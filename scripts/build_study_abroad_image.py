@@ -1,0 +1,537 @@
+import os
+import subprocess
+
+def generate_svg():
+    svg_content = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <defs>
+    <!-- Background Sky: Sunset to Dusk Twilight -->
+    <linearGradient id="sunset-sky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2c3e55" />
+      <stop offset="35%" stop-color="#486581" />
+      <stop offset="65%" stop-color="#768fa5" />
+      <stop offset="85%" stop-color="#b9a797" />
+      <stop offset="100%" stop-color="#e2c4a6" />
+    </linearGradient>
+
+    <!-- Floor Dark Slate Gradient -->
+    <linearGradient id="ground-slate" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e2633" />
+      <stop offset="30%" stop-color="#151c26" />
+      <stop offset="70%" stop-color="#0f141c" />
+      <stop offset="100%" stop-color="#090c12" />
+    </linearGradient>
+
+    <!-- Global Hologram Core Radiance -->
+    <radialGradient id="globe-sun" cx="50%" cy="38%" r="48%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="1" />
+      <stop offset="20%" stop-color="#fef08a" stop-opacity="0.85" />
+      <stop offset="45%" stop-color="#38bdf8" stop-opacity="0.5" />
+      <stop offset="75%" stop-color="#0284c7" stop-opacity="0.2" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+    </radialGradient>
+
+    <radialGradient id="earth-globe" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#e0f2fe" stop-opacity="0.95" />
+      <stop offset="30%" stop-color="#7dd3fc" stop-opacity="0.8" />
+      <stop offset="65%" stop-color="#0284c7" stop-opacity="0.6" />
+      <stop offset="100%" stop-color="#034b75" stop-opacity="0.4" />
+    </radialGradient>
+
+    <!-- 3D Gold Extruded Ingot for GLOBAL STUDY -->
+    <linearGradient id="gold-metal-3d" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fffbeb" />
+      <stop offset="20%" stop-color="#fde047" />
+      <stop offset="45%" stop-color="#d97706" />
+      <stop offset="75%" stop-color="#b45309" />
+      <stop offset="90%" stop-color="#fde68a" />
+      <stop offset="100%" stop-color="#78350f" />
+    </linearGradient>
+
+    <!-- Cyan Glow Portals -->
+    <linearGradient id="portal-glow" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.1" />
+      <stop offset="50%" stop-color="#38bdf8" stop-opacity="0.6" />
+      <stop offset="100%" stop-color="#e0f2fe" stop-opacity="0.95" />
+    </linearGradient>
+
+    <!-- Bronze Rim Ring -->
+    <linearGradient id="bronze-rim-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#78350f" />
+      <stop offset="25%" stop-color="#d97706" />
+      <stop offset="50%" stop-color="#fef3c7" />
+      <stop offset="75%" stop-color="#b45309" />
+      <stop offset="100%" stop-color="#451a03" />
+    </linearGradient>
+  </defs>
+
+  <!-- 1. BACKGROUND SKY & HORIZON SUNSET -->
+  <rect x="0" y="0" width="1920" height="420" fill="url(#sunset-sky)" />
+  <!-- Warm Golden Sunset Glow on Horizon -->
+  <ellipse cx="1080" cy="360" rx="600" ry="180" fill="#fef08a" opacity="0.45" />
+
+  <!-- 2. GLOBAL CITY SILHOUETTES -->
+  <g opacity="0.4" fill="#334155">
+    <!-- Left Skyline: London Gherkin & Antennas -->
+    <rect x="20" y="140" width="45" height="250" />
+    <rect x="75" y="110" width="40" height="280" />
+    <!-- 30 St Mary Axe (The Gherkin) -->
+    <path d="M 160 350 C 160 210, 178 70, 198 50 C 218 70, 236 210, 236 350 Z" />
+    <!-- Telecommunications Tower / Spire -->
+    <rect x="250" y="140" width="8" height="250" />
+    <circle cx="254" cy="140" r="14" />
+    <rect x="270" y="80" width="30" height="310" />
+
+    <!-- Asian Pagoda (Multi-tiered Pagoda rooflines) -->
+    <rect x="330" y="240" width="60" height="150" />
+    <path d="M 315 240 Q 360 220 405 240 L 390 210 Q 360 200 330 210 Z" />
+    <path d="M 325 200 Q 360 180 395 200 L 385 170 Q 360 160 335 170 Z" />
+    <path d="M 335 160 Q 360 140 385 160 L 375 130 Q 360 125 345 130 Z" />
+    <line x1="360" y1="130" x2="360" y2="70" stroke="#334155" stroke-width="4" />
+
+    <rect x="420" y="150" width="45" height="240" />
+
+    <!-- Right Skyline: New York Empire State & Skyscraper Canyon -->
+    <rect x="1350" y="130" width="40" height="260" />
+    <rect x="1400" y="90" width="45" height="300" />
+    <polygon points="1400,90 1422,30 1445,90" />
+    <!-- Empire State / Chrysler Needle -->
+    <rect x="1510" y="120" width="55" height="270" />
+    <rect x="1528" y="70" width="18" height="50" />
+    <rect x="1534" y="20" width="6" height="50" />
+    <line x1="1537" y1="20" x2="1537" y2="5" stroke="#334155" stroke-width="3" />
+
+    <rect x="1600" y="100" width="50" height="290" />
+    <rect x="1665" y="80" width="45" height="310" />
+    <rect x="1730" y="140" width="60" height="250" />
+    <rect x="1810" y="120" width="65" height="270" />
+  </g>
+
+  <!-- 3. CAMPUS ISOMETRIC BASE GROUND -->
+  <rect x="0" y="320" width="1920" height="760" fill="url(#ground-slate)" />
+
+  <!-- Perimeter Lush Tree Line -->
+  <g fill="#1a3328" opacity="0.85">
+    <circle cx="90" cy="360" r="40" />
+    <circle cx="140" cy="350" r="48" />
+    <circle cx="280" cy="365" r="42" />
+    <circle cx="430" cy="370" r="45" />
+    <circle cx="1250" cy="370" r="40" />
+    <circle cx="1320" cy="360" r="45" />
+    <circle cx="1780" cy="370" r="50" />
+    <circle cx="1850" cy="360" r="55" />
+  </g>
+
+  <!-- 4. RADIATING GLOWING CYAN NAVIGATION TRACKS -->
+  <g stroke="#38bdf8" fill="none" opacity="0.65">
+    <!-- To Medical Sciences (Left-Front) -->
+    <path d="M 720 540 L 400 640 L 250 680" stroke-width="6" />
+    <circle cx="250" cy="680" r="8" fill="#38bdf8" />
+
+    <!-- To AI Cyber Lab (Left-Back) -->
+    <path d="M 760 480 L 520 420 L 450 400" stroke-width="5" />
+
+    <!-- To Technology Satellite Hub (Right-Back) -->
+    <path d="M 1160 480 L 1380 430 L 1480 410" stroke-width="5" />
+
+    <!-- To Management Studies (Right-Mid) -->
+    <path d="M 1180 540 L 1520 590 L 1650 610" stroke-width="6" />
+
+    <!-- To Global University Monument (Right-Front) -->
+    <path d="M 1120 620 L 1450 720 L 1600 780" stroke-width="8" />
+    <circle cx="1600" cy="780" r="10" fill="#38bdf8" />
+
+    <!-- Center Guidance Pathway -->
+    <path d="M 960 620 L 960 760" stroke-width="8" />
+  </g>
+
+  <!-- 5. MULTI-TIER CIRCULAR PLATFORM & WORLD HERITAGE RING -->
+  <ellipse cx="960" cy="520" rx="420" ry="180" fill="#131a26" stroke="#1e293b" stroke-width="8" />
+  <ellipse cx="960" cy="520" rx="390" ry="165" fill="#182333" stroke="#0284c7" stroke-width="5" />
+  <!-- Bronze Heritage Inlaid Ring -->
+  <ellipse cx="960" cy="520" rx="360" ry="150" fill="#1e293b" stroke="url(#bronze-rim-grad)" stroke-width="18" />
+
+  <!-- World Landmark Medallions along Ring -->
+  <g fill="#fde047" opacity="0.9">
+    <!-- Eiffel Tower (Left) -->
+    <polygon points="680,520 690,495 700,520" fill="#fde047" />
+    <line x1="690" y1="495" x2="690" y2="480" stroke="#fde047" stroke-width="2" />
+    <!-- Big Ben (Left-Center) -->
+    <rect x="780" y="560" width="12" height="30" rx="2" fill="#d97706" />
+    <polygon points="778,560 786,545 794,560" fill="#fde047" />
+    <!-- American Bald Eagle (Bottom-Left) -->
+    <path d="M 860 600 Q 880 580 900 600 Q 880 592 860 600 Z" fill="#fde047" />
+    <!-- Ashoka Chakra (Bottom-Center) -->
+    <circle cx="960" cy="605" r="10" stroke="#fde047" stroke-width="2" fill="none" />
+    <!-- Dragon / Kangaroo (Right-Bottom) -->
+    <rect x="1030" y="585" width="24" height="15" rx="3" fill="#d97706" />
+    <circle cx="1120" cy="550" r="9" fill="#fde047" />
+    <!-- Christ the Redeemer (Far-Right) -->
+    <line x1="1200" y1="510" x2="1200" y2="535" stroke="#fde047" stroke-width="3" />
+    <line x1="1190" y1="518" x2="1210" y2="518" stroke="#fde047" stroke-width="3" />
+  </g>
+
+  <!-- Cyan Step Ring -->
+  <ellipse cx="960" cy="510" rx="280" ry="110" fill="#0f172a" stroke="#38bdf8" stroke-width="6" />
+  <ellipse cx="960" cy="505" rx="220" ry="85" fill="#0284c7" fill-opacity="0.3" stroke="#e0f2fe" stroke-width="3" />
+  <ellipse cx="960" cy="500" rx="160" ry="60" fill="#ffffff" fill-opacity="0.2" />
+
+  <!-- 6. THE GLOWING GLOBAL EARTH SPHERE (HOLOGRAPHIC WORLD) -->
+  <!-- Ambient Radiance -->
+  <ellipse cx="960" cy="380" rx="360" ry="360" fill="url(#globe-sun)" />
+
+  <!-- Hologram Globe Base -->
+  <circle cx="960" cy="360" r="195" fill="url(#earth-globe)" />
+  <circle cx="960" cy="360" r="190" fill="none" stroke="#e0f2fe" stroke-width="2" opacity="0.7" stroke-dasharray="12 6" />
+
+  <!-- Latitudinal & Longitudinal Grid Lines on Globe -->
+  <g stroke="#ffffff" stroke-width="1.5" fill="none" opacity="0.5">
+    <!-- Equator and parallels -->
+    <ellipse cx="960" cy="360" rx="190" ry="65" />
+    <ellipse cx="960" cy="300" rx="175" ry="45" />
+    <ellipse cx="960" cy="420" rx="175" ry="45" />
+    <!-- Longitude meridians -->
+    <ellipse cx="960" cy="360" rx="80" ry="190" />
+    <ellipse cx="960" cy="360" rx="140" ry="190" />
+    <line x1="960" y1="170" x2="960" y2="550" />
+  </g>
+
+  <!-- Glowing World Continents Silhouette Outline -->
+  <g fill="#e0f2fe" opacity="0.35">
+    <!-- North America -->
+    <path d="M 830 250 Q 860 220 890 260 Q 870 300 840 310 Q 820 280 830 250 Z" />
+    <!-- Europe & UK -->
+    <path d="M 940 240 Q 980 230 1000 260 Q 970 280 940 270 Z" />
+    <!-- Asia -->
+    <path d="M 1010 240 Q 1080 230 1100 290 Q 1060 330 1010 300 Z" />
+    <!-- Africa -->
+    <path d="M 940 310 Q 980 300 990 370 Q 950 410 930 350 Z" />
+  </g>
+
+  <!-- Revolving Orbital Quantum Rings -->
+  <g stroke="#ffffff" stroke-width="4" fill="none" opacity="0.95">
+    <ellipse cx="960" cy="360" rx="175" ry="70" transform="rotate(-28 960 360)" stroke="#e0f2fe" stroke-width="6" />
+    <ellipse cx="960" cy="360" rx="175" ry="70" transform="rotate(32 960 360)" stroke="#bae6fd" stroke-width="6" />
+    <ellipse cx="960" cy="360" rx="165" ry="55" transform="rotate(88 960 360)" stroke="#7dd3fc" stroke-width="5" />
+  </g>
+
+  <!-- Glowing City Pinpoints & Holographic Floating Labels -->
+  <g font-family="'Segoe UI', Roboto, sans-serif" font-weight="900" font-size="11" fill="#ffffff" letter-spacing="1">
+    <!-- NEW YORK -->
+    <circle cx="850" cy="275" r="4" fill="#fde047" />
+    <rect x="800" y="248" width="70" height="18" rx="2" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5" />
+    <text x="835" y="261" text-anchor="middle">NEW YORK</text>
+
+    <!-- LONDON -->
+    <circle cx="950" cy="255" r="4" fill="#fde047" />
+    <rect x="925" y="225" width="60" height="18" rx="2" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5" />
+    <text x="955" y="238" text-anchor="middle">LONDON</text>
+
+    <!-- PARIS -->
+    <circle cx="940" cy="295" r="4" fill="#fde047" />
+    <rect x="895" y="285" width="50" height="18" rx="2" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5" />
+    <text x="920" y="298" text-anchor="middle">PARIS</text>
+
+    <!-- TOKYO -->
+    <circle cx="1085" cy="330" r="4" fill="#fde047" />
+    <rect x="1070" y="340" width="55" height="18" rx="2" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5" />
+    <text x="1097" y="353" text-anchor="middle">TOKYO</text>
+
+    <!-- BEIJING -->
+    <circle cx="1060" cy="290" r="4" fill="#fde047" />
+    <rect x="1035" y="270" width="60" height="18" rx="2" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5" />
+    <text x="1065" y="283" text-anchor="middle">BEIJING</text>
+
+    <!-- ROME -->
+    <circle cx="985" cy="340" r="4" fill="#fde047" />
+    <rect x="965" y="355" width="48" height="18" rx="2" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5" />
+    <text x="989" y="368" text-anchor="middle">ROME</text>
+
+    <!-- TORONTO -->
+    <circle cx="890" cy="375" r="4" fill="#fde047" />
+    <rect x="870" y="390" width="62" height="18" rx="2" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5" />
+    <text x="901" y="403" text-anchor="middle">TORONTO</text>
+  </g>
+
+  <!-- Core Sun Spark -->
+  <circle cx="960" cy="360" r="28" fill="#ffffff" />
+  <circle cx="960" cy="360" r="46" fill="#fef08a" opacity="0.8" />
+
+  <!-- 7. LEFT WING: MEDICAL SCIENCES & AI ENGINEERING COMPLEX -->
+  <!-- AI Cyber Research Lab (Back-Left) -->
+  <g>
+    <!-- Complex Building Block -->
+    <polygon points="350,380 560,340 560,450 350,490" fill="#2d3748" stroke="#4a5568" stroke-width="2" />
+    <polygon points="350,380 430,320 640,300 560,340" fill="#4a5568" />
+    
+    <!-- Neon Green "AI" Sign -->
+    <rect x="460" y="220" width="65" height="55" rx="8" fill="#0f172a" stroke="#4ade80" stroke-width="4" />
+    <text x="492" y="260" font-family="'Segoe UI', Roboto, sans-serif" font-weight="900" font-size="34" fill="#4ade80" text-anchor="middle">AI</text>
+
+    <!-- Holographic Brain Icon -->
+    <g transform="translate(540, 210) scale(1.3)" fill="none" stroke="#38bdf8" stroke-width="3">
+      <path d="M 20 40 C 5 40, 0 20, 15 10 C 25 0, 35 15, 35 25 C 35 35, 45 40, 40 50 C 35 60, 20 60, 20 40 Z" />
+      <circle cx="20" cy="25" r="3" fill="#38bdf8" />
+      <circle cx="30" cy="35" r="2" fill="#ffffff" />
+      <line x1="20" y1="25" x2="30" y2="35" stroke="#38bdf8" stroke-width="2" />
+    </g>
+
+    <!-- Autonomous Humanoid Robot standing by -->
+    <g transform="translate(440, 370) scale(0.9)">
+      <!-- Head -->
+      <circle cx="20" cy="20" r="10" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2" />
+      <rect x="15" y="16" width="10" height="4" rx="2" fill="#38bdf8" />
+      <!-- Torso -->
+      <rect x="10" y="32" width="20" height="35" rx="4" fill="#e2e8f0" stroke="#94a3b8" stroke-width="2" />
+      <!-- Limbs -->
+      <line x1="8" y1="36" x2="0" y2="60" stroke="#cbd5e1" stroke-width="4" />
+      <line x1="32" y1="36" x2="40" y2="60" stroke="#cbd5e1" stroke-width="4" />
+      <line x1="14" y1="67" x2="12" y2="105" stroke="#94a3b8" stroke-width="5" />
+      <line x1="26" y1="67" x2="28" y2="105" stroke="#94a3b8" stroke-width="5" />
+    </g>
+
+    <!-- Hovering Flying Drone -->
+    <g transform="translate(380, 180) scale(0.8)">
+      <ellipse cx="30" cy="20" rx="16" ry="8" fill="#e2e8f0" stroke="#38bdf8" stroke-width="2" />
+      <circle cx="30" cy="24" r="5" fill="#38bdf8" />
+      <line x1="10" y1="12" x2="50" y2="28" stroke="#94a3b8" stroke-width="2" />
+      <line x1="10" y1="28" x2="50" y2="12" stroke="#94a3b8" stroke-width="2" />
+    </g>
+
+    <!-- Engineering Portal Arch -->
+    <path d="M 550 490 C 550 390, 680 370, 680 460" fill="none" stroke="url(#portal-glow)" stroke-width="16" />
+    <rect x="580" y="410" width="105" height="26" rx="4" fill="#0f172a" stroke="#38bdf8" stroke-width="2" />
+    <text x="632" y="427" font-family="'Segoe UI', Roboto, sans-serif" font-weight="900" font-size="11" fill="#ffffff" text-anchor="middle" letter-spacing="1.5">ENGINEERING</text>
+  </g>
+
+  <!-- Front Building: Medical Sciences Hospital -->
+  <g>
+    <!-- White Isometric Medical Center -->
+    <polygon points="50,470 380,410 380,580 50,650" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="3" />
+    <polygon points="50,470 120,400 450,370 380,410" fill="#f8fafc" />
+    <!-- Pillars & Illuminated Entrance -->
+    <rect x="80" y="550" width="30" height="90" fill="#94a3b8" />
+    <rect x="190" y="525" width="30" height="100" fill="#94a3b8" />
+    <rect x="235" y="515" width="60" height="85" fill="#fef08a" opacity="0.9" />
+
+    <!-- Big Glowing Medical Cross Icon on Facade -->
+    <circle cx="265" cy="445" r="30" fill="#0284c7" stroke="#38bdf8" stroke-width="3" />
+    <rect x="257" y="427" width="16" height="36" rx="3" fill="#ffffff" />
+    <rect x="247" y="437" width="36" height="16" rx="3" fill="#ffffff" />
+
+    <!-- Satellite Dish Antenna atop Hospital Roof -->
+    <g transform="translate(130, 310) scale(1.2)">
+      <path d="M 20 60 Q 60 20 80 50" fill="none" stroke="#94a3b8" stroke-width="6" />
+      <line x1="50" y1="35" x2="30" y2="20" stroke="#38bdf8" stroke-width="3" />
+      <circle cx="30" cy="20" r="4" fill="#fde047" />
+      <!-- Tripod Base -->
+      <line x1="50" y1="55" x2="40" y2="85" stroke="#64748b" stroke-width="4" />
+      <line x1="50" y1="55" x2="60" y2="85" stroke="#64748b" stroke-width="4" />
+    </g>
+
+    <!-- Holographic Portal Arch: MEDICAL SCIENCES -->
+    <path d="M 390 690 C 390 530, 560 510, 560 640" fill="none" stroke="url(#portal-glow)" stroke-width="22" />
+    <path d="M 390 690 C 390 530, 560 510, 560 640" fill="none" stroke="#ffffff" stroke-width="4" />
+    <rect x="390" y="585" width="160" height="32" rx="4" fill="#0f172a" stroke="#38bdf8" stroke-width="2" />
+    <text x="470" y="606" font-family="'Segoe UI', Roboto, sans-serif" font-weight="900" font-size="12" fill="#ffffff" text-anchor="middle" letter-spacing="2">MEDICAL SCIENCES</text>
+  </g>
+
+  <!-- 8. RIGHT WING: TECHNOLOGY SATELLITE HUB, MANAGEMENT & GLOBAL UNIVERSITY -->
+  <!-- Technology Satellite Communications Complex -->
+  <g>
+    <!-- Base Platform -->
+    <polygon points="1200,380 1480,350 1520,440 1240,470" fill="#334155" />
+    
+    <!-- Massive Steerable Satellite Dish with Blue Solar Panel Array -->
+    <g transform="translate(1280, 160) scale(1.3)">
+      <!-- Giant Dish Structure -->
+      <ellipse cx="70" cy="60" rx="45" ry="30" fill="#cbd5e1" stroke="#475569" stroke-width="4" transform="rotate(-30 70 60)" />
+      <ellipse cx="65" cy="55" rx="35" ry="20" fill="#1e293b" stroke="#38bdf8" stroke-width="3" transform="rotate(-30 65 55)" />
+      <!-- Feed Horn & Transceiver -->
+      <line x1="65" y1="55" x2="45" y2="25" stroke="#38bdf8" stroke-width="3" />
+      <circle cx="45" cy="25" r="4" fill="#fde047" />
+      <!-- Solar Wings -->
+      <rect x="100" y="20" width="40" height="24" rx="2" fill="#0284c7" stroke="#e0f2fe" stroke-width="1.5" transform="rotate(20 100 20)" />
+      <line x1="110" y1="20" x2="110" y2="44" stroke="#ffffff" stroke-width="1" />
+      <line x1="120" y1="20" x2="120" y2="44" stroke="#ffffff" stroke-width="1" />
+      <!-- Gantry Tower -->
+      <rect x="62" y="85" width="16" height="50" fill="#475569" />
+    </g>
+
+    <!-- Android Engineer Sitting with Laptop -->
+    <g transform="translate(1250, 420) scale(0.9)">
+      <circle cx="20" cy="20" r="8" fill="#f1f5f9" />
+      <rect x="12" y="28" width="16" height="25" rx="2" fill="#e2e8f0" />
+      <polygon points="26,38 42,38 46,46 26,46" fill="#38bdf8" /> <!-- Laptop screen -->
+    </g>
+
+    <!-- TECHNOLOGY Neon Signboard & Arch -->
+    <path d="M 1240 480 C 1240 370, 1370 360, 1370 450" fill="none" stroke="url(#portal-glow)" stroke-width="16" />
+    <rect x="1255" y="405" width="115" height="26" rx="4" fill="#0f172a" stroke="#38bdf8" stroke-width="2" />
+    <text x="1312" y="422" font-family="'Segoe UI', Roboto, sans-serif" font-weight="900" font-size="11" fill="#ffffff" text-anchor="middle" letter-spacing="1.5">TECHNOLOGY</text>
+  </g>
+
+  <!-- Management Studies Corporate Glass Complex -->
+  <g>
+    <!-- Modern Glass Office Building -->
+    <polygon points="1520,380 1850,340 1850,560 1520,600" fill="#1e293b" stroke="#334155" stroke-width="3" />
+    <polygon points="1520,380 1600,320 1900,290 1850,340" fill="#334155" />
+    <!-- Candlestick / Stock Charts behind Glass -->
+    <g fill="#fef08a" opacity="0.75">
+      <rect x="1560" y="420" width="45" height="40" rx="2" />
+      <rect x="1630" y="410" width="45" height="40" rx="2" />
+      <rect x="1700" y="400" width="45" height="40" rx="2" />
+      <rect x="1560" y="480" width="45" height="40" rx="2" />
+      <rect x="1630" y="470" width="45" height="40" rx="2" />
+      <rect x="1700" y="460" width="45" height="40" rx="2" />
+    </g>
+
+    <!-- Neon Green Ascending Stock Growth Line Chart -->
+    <g transform="translate(1600, 180) scale(1.3)">
+      <polyline points="0,70 25,50 50,60 75,30 100,10" fill="none" stroke="#4ade80" stroke-width="6" />
+      <polygon points="90,5 110,10 100,28" fill="#4ade80" />
+      <rect x="10" y="70" width="12" height="30" fill="#4ade80" opacity="0.4" />
+      <rect x="35" y="55" width="12" height="45" fill="#4ade80" opacity="0.4" />
+      <rect x="60" y="62" width="12" height="38" fill="#4ade80" opacity="0.4" />
+      <rect x="85" y="32" width="12" height="68" fill="#4ade80" opacity="0.6" />
+    </g>
+
+    <!-- Holographic Arch: MANAGEMENT STUDIES -->
+    <path d="M 1370 630 C 1370 480, 1540 460, 1540 590" fill="none" stroke="url(#portal-glow)" stroke-width="20" />
+    <path d="M 1370 630 C 1370 480, 1540 460, 1540 590" fill="none" stroke="#ffffff" stroke-width="3" />
+    <rect x="1385" y="525" width="160" height="32" rx="4" fill="#0f172a" stroke="#38bdf8" stroke-width="2" />
+    <text x="1465" y="546" font-family="'Segoe UI', Roboto, sans-serif" font-weight="900" font-size="12" fill="#ffffff" text-anchor="middle" letter-spacing="1.5">MANAGEMENT STUDIES</text>
+  </g>
+
+  <!-- Global University Seal Monument (Right-Front) -->
+  <g>
+    <!-- Tiered Stone Base -->
+    <polygon points="1520,770 1780,690 1780,760 1520,840" fill="#334155" stroke="#475569" stroke-width="3" />
+    <polygon points="1520,770 1590,720 1840,650 1780,690" fill="#475569" />
+
+    <!-- Circular Gold Seal: GLOBAL UNIVERSITY -->
+    <circle cx="1680" cy="650" r="75" fill="#0f172a" stroke="#d97706" stroke-width="8" />
+    <circle cx="1680" cy="650" r="62" fill="none" stroke="#fde047" stroke-width="3" stroke-dasharray="8 4" />
+    <!-- Global Compass Rose in Center -->
+    <g transform="translate(1680, 650)">
+      <polygon points="0,-45 8,-12 35,0 8,12 0,45 -8,12 -35,0 -8,-12" fill="#fde047" stroke="#b45309" stroke-width="2" />
+      <circle cx="0" cy="0" r="8" fill="#d97706" />
+    </g>
+    <text x="1680" y="595" font-family="'Segoe UI', Roboto, sans-serif" font-weight="900" font-size="11" fill="#fde047" text-anchor="middle" letter-spacing="2">GLOBAL UNIVERSITY</text>
+
+    <!-- ADMISSIONS Signpost -->
+    <rect x="1440" y="800" width="160" height="34" rx="4" fill="#0f172a" stroke="#38bdf8" stroke-width="2" />
+    <text x="1520" y="823" font-family="'Segoe UI', Roboto, sans-serif" font-weight="900" font-size="13" fill="#ffffff" text-anchor="middle" letter-spacing="2">ADMISSIONS</text>
+  </g>
+
+  <!-- 9. FOREGROUND CENTER CONSULTATION DESK -->
+  <g>
+    <ellipse cx="960" cy="735" rx="140" ry="38" fill="#1e293b" stroke="#38bdf8" stroke-width="4" />
+    <polygon points="820,735 1100,735 1060,780 860,780" fill="#0f172a" />
+    <path d="M 860 770 Q 960 790 1060 770" stroke="#38bdf8" stroke-width="6" fill="none" />
+    <rect x="880" y="720" width="38" height="24" rx="2" fill="#38bdf8" opacity="0.8" />
+    <rect x="1010" y="718" width="30" height="28" rx="2" fill="#f8fafc" opacity="0.8" />
+  </g>
+
+  <!-- 10. FOREGROUND "GLOBAL STUDY" 3D GOLD INGOT PLATE -->
+  <g id="global-study-plaque">
+    <rect x="440" y="860" width="1040" height="125" rx="28" fill="#111827" stroke="#374151" stroke-width="8" />
+    <rect x="455" y="875" width="1010" height="95" rx="20" fill="#090d14" stroke="#0284c7" stroke-width="4" />
+    <ellipse cx="960" cy="920" rx="420" ry="25" fill="#d97706" opacity="0.25" />
+
+    <!-- 3D Extruded Relief Shadows -->
+    <text x="960" y="942" font-family="'Segoe UI', Roboto, 'Montserrat', sans-serif" font-weight="900" font-size="62" fill="#451a03" text-anchor="middle" letter-spacing="8">GLOBAL STUDY</text>
+    <text x="960" y="939" font-family="'Segoe UI', Roboto, 'Montserrat', sans-serif" font-weight="900" font-size="62" fill="#78350f" text-anchor="middle" letter-spacing="8">GLOBAL STUDY</text>
+    <text x="960" y="935" font-family="'Segoe UI', Roboto, 'Montserrat', sans-serif" font-weight="900" font-size="62" fill="#b45309" text-anchor="middle" letter-spacing="8">GLOBAL STUDY</text>
+    <!-- Face Gradient -->
+    <text x="960" y="930" font-family="'Segoe UI', Roboto, 'Montserrat', sans-serif" font-weight="900" font-size="62" fill="url(#gold-metal-3d)" text-anchor="middle" letter-spacing="8">GLOBAL STUDY</text>
+  </g>
+
+  <!-- 11. FOREGROUND STUDY ABROAD ARTIFACTS: PASSPORT, VISA BOOK, COMPASS, BOOKS, MORTARBOARD -->
+  <!-- A) Graduation Mortarboard with Golden Tassel (Far-Left) -->
+  <g transform="translate(380, 890)">
+    <polygon points="100,0 200,45 100,90 0,45" fill="#111827" stroke="#38bdf8" stroke-width="2" />
+    <path d="M 40 58 Q 100 110 160 58" fill="#1f2937" />
+    <line x1="100" y1="45" x2="35" y2="90" stroke="#fde047" stroke-width="4" />
+    <circle cx="35" cy="90" r="7" fill="#fde047" />
+  </g>
+
+  <!-- B) Blue Official Gold-Embossed PASSPORT -->
+  <g transform="translate(610, 930)">
+    <rect x="0" y="0" width="115" height="150" rx="8" fill="#1e3a8a" stroke="#1d4ed8" stroke-width="3" />
+    <text x="57" y="35" font-family="'Segoe UI', Roboto, sans-serif" font-weight="900" font-size="12" fill="#fde047" text-anchor="middle" letter-spacing="2">PASSPORT</text>
+    <!-- Gold Coat of Arms Crest in Center -->
+    <circle cx="57" cy="80" r="22" fill="none" stroke="#fde047" stroke-width="3" />
+    <circle cx="57" cy="80" r="14" fill="#fde047" opacity="0.3" />
+    <text x="57" y="130" font-family="'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="10" fill="#fde047" text-anchor="middle" letter-spacing="2">PASSPORT</text>
+  </g>
+
+  <!-- C) Open Passport Book with VISA Stamps -->
+  <g transform="translate(770, 930)">
+    <!-- Open White/Beige Pages -->
+    <path d="M 0 15 Q 160 0 180 15 L 180 145 Q 160 130 0 145 Z" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2" />
+    <path d="M 180 15 Q 200 0 360 15 L 360 145 Q 200 130 180 145 Z" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2" />
+    <!-- Spine -->
+    <line x1="180" y1="12" x2="180" y2="146" stroke="#94a3b8" stroke-width="3" />
+
+    <!-- Left Page: Biometric Photo & Passport ID -->
+    <rect x="25" y="35" width="45" height="55" rx="3" fill="#cbd5e1" stroke="#94a3b8" stroke-width="1.5" />
+    <circle cx="47" cy="55" r="12" fill="#64748b" />
+    <rect x="80" y="40" width="80" height="6" rx="1" fill="#94a3b8" />
+    <rect x="80" y="55" width="65" height="5" rx="1" fill="#94a3b8" />
+    <rect x="80" y="68" width="75" height="5" rx="1" fill="#94a3b8" />
+
+    <!-- Right Page: Red & Blue VISA Entry Seals -->
+    <rect x="205" y="32" width="60" height="24" rx="3" fill="none" stroke="#dc2626" stroke-width="2" />
+    <text x="235" y="48" font-family="monospace" font-weight="bold" font-size="11" fill="#dc2626" text-anchor="middle">VISA</text>
+    
+    <circle cx="310" cy="55" r="22" fill="none" stroke="#0284c7" stroke-width="2" stroke-dasharray="4 2" />
+    <text x="310" y="58" font-family="monospace" font-weight="bold" font-size="8" fill="#0284c7" text-anchor="middle">APPROVED</text>
+    
+    <!-- Multi-Color Round Stamps -->
+    <ellipse cx="240" cy="105" rx="28" ry="18" fill="none" stroke="#dc2626" stroke-width="2" transform="rotate(-15 240 105)" />
+    <circle cx="315" cy="110" r="20" fill="none" stroke="#0284c7" stroke-width="2" />
+  </g>
+
+  <!-- D) Polished Brass Pocket Compass -->
+  <g transform="translate(1180, 930)">
+    <circle cx="60" cy="65" r="45" fill="#ca8a04" stroke="#78350f" stroke-width="4" />
+    <circle cx="60" cy="65" r="38" fill="#fef9c3" stroke="#eab308" stroke-width="2" />
+    <!-- Compass Rose Needle -->
+    <polygon points="60,35 68,65 60,61 52,65" fill="#dc2626" />
+    <polygon points="60,95 68,65 60,69 52,65" fill="#475569" />
+    <circle cx="60" cy="65" r="5" fill="#78350f" />
+    <!-- Brass Hanging Loop -->
+    <circle cx="60" cy="16" r="10" fill="none" stroke="#ca8a04" stroke-width="4" />
+  </g>
+
+  <!-- E) Stack of International Textbooks with UK Union Jack Flag -->
+  <g transform="translate(1320, 920)">
+    <!-- Book 3 (Bottom - Green) -->
+    <rect x="0" y="70" width="180" height="28" rx="3" fill="#15803d" stroke="#166534" stroke-width="2" />
+    <!-- Book 2 (Middle - Red) -->
+    <rect x="10" y="44" width="170" height="26" rx="3" fill="#b91c1c" stroke="#991b1b" stroke-width="2" />
+    <!-- Book 1 (Top - UK Union Jack Cover) -->
+    <rect x="20" y="16" width="160" height="28" rx="3" fill="#1e3a8a" stroke="#1e40af" stroke-width="2" />
+    <!-- Union Jack Details -->
+    <g transform="translate(30, 20)">
+      <rect x="0" y="0" width="40" height="20" fill="#1e3a8a" />
+      <line x1="0" y1="0" x2="40" y2="20" stroke="#ffffff" stroke-width="3" />
+      <line x1="40" y1="0" x2="0" y2="20" stroke="#ffffff" stroke-width="3" />
+      <line x1="0" y1="0" x2="40" y2="20" stroke="#dc2626" stroke-width="1.5" />
+      <line x1="40" y1="0" x2="0" y2="20" stroke="#dc2626" stroke-width="1.5" />
+      <rect x="16" y="0" width="8" height="20" fill="#ffffff" />
+      <rect x="0" y="6" width="40" height="8" fill="#ffffff" />
+      <rect x="18" y="0" width="4" height="20" fill="#dc2626" />
+      <rect x="0" y="8" width="40" height="4" fill="#dc2626" />
+    </g>
+  </g>
+</svg>"""
+
+    svg_path = "public/images/study-abroad-global-pathways.svg"
+    os.makedirs("public/images", exist_ok=True)
+    with open(svg_path, "w", encoding="utf-8") as f:
+        f.write(svg_content)
+    print(f"Generated {svg_path}")
+
+if __name__ == "__main__":
+    generate_svg()

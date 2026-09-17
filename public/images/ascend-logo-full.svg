@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 480" fill="none">
+  <defs>
+    <!-- Brand Signature Teal Gradient matching the official photo -->
+    <linearGradient id="ascend-brand-grad" x1="104" y1="236" x2="296" y2="40" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#006d77" />
+      <stop offset="30%" stop-color="#00828a" />
+      <stop offset="70%" stop-color="#0d9488" />
+      <stop offset="100%" stop-color="#14b8a6" />
+    </linearGradient>
+
+    <!-- Isometric Depth Shadow Accent -->
+    <linearGradient id="ascend-depth-grad" x1="200" y1="36" x2="300" y2="240" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#14b8a6" />
+      <stop offset="50%" stop-color="#00828a" />
+      <stop offset="100%" stop-color="#043236" />
+    </linearGradient>
+
+    <filter id="ascend-glow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#00828a" flood-opacity="0.3" />
+    </filter>
+  </defs>
+
+  <!-- GEOMETRIC DELTA EMBLEM -->
+  <g transform="translate(80, 20)" filter="url(#ascend-glow)" stroke-linejoin="miter" stroke-miterlimit="6">
+    <!-- Top-Right Descending Wing Blade -->
+    <path
+      d="M 124 16 L 146 16 L 218 166 L 194 216 L 176 186 L 198 152 Z"
+      fill="url(#ascend-depth-grad)"
+    />
+
+    <!-- Main Outer Triangle Left Leg -->
+    <path
+      d="M 108 44 L 128 44 L 48 178 L 28 178 Z"
+      fill="url(#ascend-brand-grad)"
+    />
+
+    <!-- Inner Parallel Diagonal Stripe -->
+    <path
+      d="M 128 44 L 148 44 L 68 178 L 48 178 Z"
+      fill="url(#ascend-brand-grad)"
+    />
+
+    <!-- Diagonal crossbar connecting left wing into inner triangle right leg -->
+    <path
+      d="M 108 44 L 128 44 L 176 162 L 156 162 Z"
+      fill="url(#ascend-brand-grad)"
+    />
+
+    <!-- Triangle Base Crossbar -->
+    <path
+      d="M 46 162 L 178 162 L 188 178 L 36 178 Z"
+      fill="url(#ascend-brand-grad)"
+    />
+
+    <!-- Bottom Right Chevron / Lightning Foot -->
+    <path
+      d="M 194 216 L 184 234 L 166 204 L 176 186 Z"
+      fill="url(#ascend-depth-grad)"
+    />
+
+    <!-- Bottom Horizontal Foundation Bar -->
+    <path
+      d="M 28 206 L 166 206 L 184 234 L 164 234 L 152 220 L 28 220 Z"
+      fill="url(#ascend-brand-grad)"
+    />
+  </g>
+
+  <!-- TYPOGRAPHY: ASCEND (Bold Geometric Dark Navy as in photo) -->
+  <text
+    x="200"
+    y="348"
+    text-anchor="middle"
+    fill="#0a192f"
+    font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Plus Jakarta Sans', 'Outfit', sans-serif"
+    font-size="62"
+    font-weight="900"
+    letter-spacing="5"
+  >
+    ASCEND
+  </text>
+
+  <!-- TYPOGRAPHY: CAREER (Tracked Signature Teal as in photo) -->
+  <text
+    x="200"
+    y="404"
+    text-anchor="middle"
+    fill="#00828a"
+    font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Plus Jakarta Sans', 'Outfit', sans-serif"
+    font-size="32"
+    font-weight="800"
+    letter-spacing="18"
+  >
+    CAREER
+  </text>
+
+  <!-- Wall divider baseline from the uploaded photo -->
+  <line x1="50" y1="432" x2="350" y2="432" stroke="#00828a" stroke-width="2.5" stroke-opacity="0.6" />
+</svg>

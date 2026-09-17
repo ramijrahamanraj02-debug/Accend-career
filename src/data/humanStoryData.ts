@@ -48,6 +48,106 @@ export interface HumanStoryProfile {
 }
 
 export const HUMAN_STORIES_DATA: Record<ServiceId, HumanStoryProfile> = {
+  'web-services': {
+    id: 'web-services',
+    pillarNumber: '01',
+    serviceTitle: 'Web Development & Engineering',
+    tagline: 'Precision full-stack engineering delivering ultra-fast, conversion-driven web platforms',
+    mentor: {
+      name: 'Rohan Mukherjee',
+      role: 'Principal Solutions Architect & Head of Web Engineering',
+      experience: '12+ years deploying enterprise SaaS, Next.js apps & e-commerce platforms',
+      avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80',
+      quote: 'Exceptional web development is where mathematical performance meets intuitive human utility. Every millisecond shaved off load time creates tangible business value.'
+    },
+    heroPhoto: {
+      url: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80',
+      alt: 'Senior web developers collaborating on full-stack web architecture and code review',
+      caption: 'Full-stack engineering sprint review and performance tuning at our tech center',
+      badge: 'ENTERPRISE WEB ENGINEERING'
+    },
+    videoClip: {
+      src: '/videos/ascend-mentor-session.mp4',
+      title: 'Full-Stack Architecture Walkthrough',
+      subtitle: 'Modern React/Next.js & API Engineering Demo • Rohan Mukherjee',
+      duration: '10s',
+      badge: 'TECH SPRINT REVIEW'
+    },
+    fieldMoments: [
+      {
+        title: 'System Architecture & Schema Design',
+        url: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80',
+        description: 'Architecting fault-tolerant databases and serverless endpoints built for scale.'
+      },
+      {
+        title: 'Core Web Vitals & Speed Optimization',
+        url: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
+        description: 'Tuning asset delivery pipelines and caching layers to guarantee sub-second LCP.'
+      },
+      {
+        title: 'Production CI/CD Cloud Deployment',
+        url: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
+        description: 'Automated container build verification with zero-downtime rolling releases.'
+      }
+    ],
+    studentSuccess: {
+      studentName: 'NexVibe Solutions',
+      roleOrDestination: 'B2B SaaS Web Application Launch',
+      quote: 'Ascend engineered our entire client platform from scratch. Our signup conversion jumped 38% within 3 weeks of going live.',
+      avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80',
+      metric: '38% Conversion Increase'
+    }
+  },
+  'graphic-design': {
+    id: 'graphic-design',
+    pillarNumber: '02',
+    serviceTitle: 'Graphic Design & Creative Studio',
+    tagline: 'Distinctive visual identities and Figma design systems that captivate target audiences',
+    mentor: {
+      name: 'Maya Varma',
+      role: 'Creative Director & Brand Experience Lead',
+      experience: '10+ years shaping visual identities for 120+ international startups and brands',
+      avatarUrl: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=600&q=80',
+      quote: 'Great visual design isn’t decoration—it’s strategic clarity. When your brand identity speaks clearly, customer trust follows naturally.'
+    },
+    heroPhoto: {
+      url: 'https://images.unsplash.com/photo-1542744094-3a31f272c490?auto=format&fit=crop&w=1200&q=80',
+      alt: 'Creative designers examining typography palettes, brand moodboards, and UI components',
+      caption: 'Creative brand discovery and visual guideline formulation workshop',
+      badge: 'CREATIVE BRAND STUDIO'
+    },
+    videoClip: {
+      src: '/videos/ascend-mentor-session.mp4',
+      title: 'Design System & UI/UX Presentation',
+      subtitle: 'Figma Auto-Layout & Typographic Hierarchy Showcase • Maya Varma',
+      duration: '10s',
+      badge: 'CREATIVE PROCESS REVIEW'
+    },
+    fieldMoments: [
+      {
+        title: 'Brand Vector Exploration & Iconography',
+        url: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=800&q=80',
+        description: 'Iterating on bespoke monogram marks and geometric icon sets in Adobe Illustrator.'
+      },
+      {
+        title: 'Figma Component Systems & Auto-Layout',
+        url: 'https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=800&q=80',
+        description: 'Building cohesive token-driven design systems with light/dark theme variants.'
+      },
+      {
+        title: 'Investor Pitch Decks & Marketing Print',
+        url: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=800&q=80',
+        description: 'Formulating compelling visual narratives for high-stakes investor pitch presentations.'
+      }
+    ],
+    studentSuccess: {
+      studentName: 'AuraCraft Lifestyle',
+      roleOrDestination: 'Brand Rebranding & Packaging Overhaul',
+      quote: 'The brand identity and packaging designs provided by Ascend transformed our brand into a premium market leader.',
+      avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80',
+      metric: '4.9/5 Brand Satisfaction'
+    }
+  },
   'career-guidance': {
     id: 'career-guidance',
     pillarNumber: '01',
@@ -61,21 +161,21 @@ export const HUMAN_STORIES_DATA: Record<ServiceId, HumanStoryProfile> = {
       quote: 'Every student carries a distinct cognitive blueprint. When we align their natural curiosity with emerging global demand, confidence replaces fear.'
     },
     heroPhoto: {
-      url: 'https://images.unsplash.com/photo-1531497865144-0464ef8fb9a9?auto=format&fit=crop&w=1200&q=80',
-      alt: 'Ascend Senior Counsellor reviewing 5-year career roadmap with a high school student and parent',
-      caption: 'In-person psychometric debrief session at our flagship advisory suite',
-      badge: 'AUTHENTIC 1-TO-1 ADVISORY'
+      url: '/images/career-guidance-compass.jpg',
+      alt: 'Ascend 3D Astrolabe Compass Chamber mapping multi-branch career pathways and trajectories',
+      caption: 'Ascend Strategic Direction Chamber: Mapping personalized career trajectories from psychometric evaluations',
+      badge: '3D PATHWAYS MATRIX'
     },
     videoClip: {
       src: '/videos/ascend-mentor-session.mp4',
       title: 'Real-Time Mentorship Consultation',
-      subtitle: 'Brushed Steel Monolith Flip • Authentic Dialogue',
-      duration: '9s',
+      subtitle: 'Live Career Psychology & Roadmap Session • Dr. Ananya Sen',
+      duration: '10s',
       badge: 'LIVE DIALOGUE FOOTAGE',
       dialogue: [
         { speaker: 'MENTOR', text: 'You have great potential.', start: 0.5, end: 4.2 },
         { speaker: 'STUDENT', text: 'Thank you.', start: 4.4, end: 6.2 },
-        { speaker: 'MENTOR', text: 'We will find the way.', start: 6.4, end: 8.8 }
+        { speaker: 'MENTOR', text: 'We will find the way together.', start: 6.4, end: 9.5 }
       ]
     },
     fieldMoments: [
@@ -159,7 +259,7 @@ export const HUMAN_STORIES_DATA: Record<ServiceId, HumanStoryProfile> = {
     id: 'jobs-placement',
     pillarNumber: '03',
     serviceTitle: 'Hire • Train • Deploy & Executive Placements',
-    tagline: 'Bridging the corporate gap through rigorous mock rounds and 50+ hiring partners',
+    tagline: 'Bridging the corporate gap through rigorous mock rounds and 500+ hiring partner companies',
     mentor: {
       name: 'Sunita Chawla',
       role: 'Director of Corporate Placement & Talent Acquisition',
@@ -168,10 +268,10 @@ export const HUMAN_STORIES_DATA: Record<ServiceId, HumanStoryProfile> = {
       quote: 'Hiring directors do not just evaluate knowledge—they look for poise, communication, and real problem-solving grit under pressure.'
     },
     heroPhoto: {
-      url: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=1200&q=80',
-      alt: 'Corporate recruiter conducting mock interview with an Ascend graduate',
-      caption: 'Executive boardroom simulation replicating tier-1 corporate interviews',
-      badge: 'INTERVIEW SIMULATION'
+      url: '/images/jobs-placement-readiness.jpg',
+      alt: 'Jobs & Placement Readiness 3D Architectural Campus',
+      caption: 'Jobs & Placement Readiness • Accelerate Your Career Journey',
+      badge: 'PLACEMENT READINESS'
     },
     videoClip: {
       src: '/videos/ascend-corporate-placement.mp4',
@@ -219,10 +319,10 @@ export const HUMAN_STORIES_DATA: Record<ServiceId, HumanStoryProfile> = {
       quote: 'Global education transforms worldview. We ensure financial barriers disappear through institutional and regional government scholarships.'
     },
     heroPhoto: {
-      url: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80',
-      alt: 'International students walking through university quad in Europe',
-      caption: 'Ascend alumni cohort arriving on campus at Politecnico di Milano, Italy',
-      badge: 'GLOBAL CAMPUS ARRIVAL'
+      url: '/images/study-abroad-global-pathways.jpg',
+      alt: 'Global Study Admissions 3D Campus with holographic world globe and international discipline hubs',
+      caption: 'Ascend global admissions network spanning Europe, North America, and Asia',
+      badge: 'GLOBAL ADMISSIONS HUB'
     },
     videoClip: {
       src: '/videos/ascend-global-admissions.mp4',
@@ -234,7 +334,7 @@ export const HUMAN_STORIES_DATA: Record<ServiceId, HumanStoryProfile> = {
     fieldMoments: [
       {
         title: 'SOP & Portfolio Workshops',
-        url: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=800&q=80',
+        url: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80',
         description: '1-to-1 statement of purpose editing with native language academic editors.'
       },
       {
@@ -269,10 +369,10 @@ export const HUMAN_STORIES_DATA: Record<ServiceId, HumanStoryProfile> = {
       quote: 'India’s top institutions reward strategic preparation and disciplined choices. We demystify cutoff trends and seat matrices.'
     },
     heroPhoto: {
-      url: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1200&q=80',
-      alt: 'Students inside a premier Indian university lecture hall',
-      caption: 'National entrance counseling and institution shortlisting workshop',
-      badge: 'CAMPUS LIFE INDIA'
+      url: '/images/study-in-india-direct-admissions.jpg',
+      alt: 'Ascend 3D Futuristic Campus: Study in India & Direct Admissions Multi-Discipline Hub',
+      caption: 'Direct Admissions & Top University Hub: Medical Sciences, Engineering, Technology, Management & Liberal Arts',
+      badge: 'DIRECT ADMISSIONS MATRIX'
     },
     videoClip: {
       src: '/videos/ascend-mentor-session.mp4',
@@ -289,7 +389,7 @@ export const HUMAN_STORIES_DATA: Record<ServiceId, HumanStoryProfile> = {
       },
       {
         title: 'Institutional Accreditations',
-        url: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=800&q=80',
+        url: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=800&q=80',
         description: 'Auditing NAAC A++ ratings, NIRF rankings, and true placement audit logs.'
       },
       {

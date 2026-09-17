@@ -16,8 +16,8 @@ export const CareerTracksSection: React.FC<CareerTracksSectionProps> = ({
   services,
   onSelectService,
   onOpenConsultation,
-  title = 'Interactive 3D Service Tracks',
-  subtitle = 'Tracks 01 through 12 form our unified service experience. Hover or tap any card for a full 180° 3D flip with deep deliverables and sub-services.'
+  title = 'Interactive Career Tracks',
+  subtitle = 'Tracks 01 through 12 form our unified service experience. Explore any pathway to uncover modules, verified deliverables, and customized roadmaps.'
 }) => {
   const [selectedAudience, setSelectedAudience] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -59,7 +59,7 @@ export const CareerTracksSection: React.FC<CareerTracksSectionProps> = ({
   });
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden" id="tracks-3d-section">
+    <section className="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden" id="tracks-pathways-section">
       {/* Background ambient lighting */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-teal-500/10 rounded-full blur-[160px] pointer-events-none" />
       <div className="absolute bottom-10 right-10 w-96 h-96 bg-indigo-500/10 rounded-full blur-[140px] pointer-events-none" />
@@ -67,12 +67,6 @@ export const CareerTracksSection: React.FC<CareerTracksSectionProps> = ({
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-teal-500/10 border border-teal-500/30 text-teal-300 text-xs font-bold tracking-wider uppercase mb-3.5 shadow-sm">
-            <Sparkles className="w-3.5 h-3.5 text-teal-400" />
-            <span>Full 3D Flip Experience</span>
-            <span className="text-teal-600">•</span>
-            <span className="font-mono text-teal-400">12 Structured Tracks</span>
-          </div>
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
             {title}

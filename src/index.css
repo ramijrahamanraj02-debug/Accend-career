@@ -1,8 +1,38 @@
 @import "tailwindcss";
 
-/* 3D Transform Utilities for Real Flip Cards */
+/* Official CRED NeoPOP Color Tokens */
+:root {
+  --pop-black: #0D0D0D;
+  --pop-surface: #161616;
+  --pop-surface-elev: #1F1F1F;
+  --pop-border: #262626;
+  --pop-border-light: #333333;
+  --neo-paccha: #E5FE40;
+  --park-green: #3BFFAD;
+  --poli-purple: #6A35FF;
+  --orange-sunshine: #FF8744;
+  --pink-pong: #FF426F;
+  --manna-yellow: #FFCB45;
+  --pop-white: #FFFFFF;
+  --muted-grey: #8A8A8A;
+}
+
+/* CRED Typography Classes */
+.font-editorial {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+.font-display {
+  font-family: 'Syne', 'Plus Jakarta Sans', sans-serif;
+}
+
+/* 3D Transform Utilities for Real Flip & Tilted Cards */
 .perspective-1200 {
   perspective: 1200px;
+}
+
+.perspective-2000 {
+  perspective: 2000px;
 }
 
 .preserve-3d {
@@ -18,3 +48,79 @@
 .rotate-y-180 {
   transform: rotateY(180deg);
 }
+
+/* Authentic CRED NeoPOP 3D Hard Shadows (Zero blur, exact plinths) */
+.cred-box-neopaccha {
+  box-shadow: 4px 4px 0px #E5FE40;
+}
+
+.cred-box-neopaccha-lg {
+  box-shadow: 6px 6px 0px #E5FE40;
+}
+
+.cred-box-white {
+  box-shadow: 4px 4px 0px #ffffff;
+}
+
+.cred-box-white-lg {
+  box-shadow: 6px 6px 0px #ffffff;
+}
+
+.cred-box-dark {
+  box-shadow: 4px 4px 0px #222222;
+}
+
+.cred-box-black {
+  box-shadow: 4px 4px 0px #000000;
+}
+
+.cred-box-purple {
+  box-shadow: 4px 4px 0px #6A35FF;
+}
+
+.cred-box-green {
+  box-shadow: 4px 4px 0px #3BFFAD;
+}
+
+.cred-box-orange {
+  box-shadow: 4px 4px 0px #FF8744;
+}
+
+.cred-box-yellow {
+  box-shadow: 4px 4px 0px #FFCB45;
+}
+
+/* CRED 3D Tactile Button Press (Hard mechanical depression) */
+.cred-btn-tactile {
+  transition: transform 0.12s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.12s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cred-btn-tactile:hover {
+  transform: translate(-1px, -1px);
+}
+
+.cred-btn-tactile:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px currentColor !important;
+}
+
+/* CRED Metallic & Holographic Sheen */
+.cred-metal-sheen {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.02) 40%,
+    rgba(255, 255, 255, 0.09) 60%,
+    rgba(255, 255, 255, 0.01) 100%
+  );
+}
+
+.cred-gold-sheen {
+  background: linear-gradient(
+    135deg,
+    #2c2411 0%,
+    #17130a 50%,
+    #2a2010 100%
+  );
+}
+

@@ -74,7 +74,7 @@ export const ASCEND_TRACKS: AscendTrack[] = [
     title: 'Jobs & Placement (HTD)',
     subtitle: 'Hire • Train • Deploy Direct Corporate Pathways',
     humanQuote: '“Turn rigorous preparation into verified offers.”',
-    description: 'Connecting qualified candidates directly to 50+ corporate hiring partners through tailored Hire-Train-Deploy pipelines, ATS resume engineering, and mock drills.',
+    description: 'Connecting qualified candidates directly to 500+ corporate hiring partner companies through tailored Hire-Train-Deploy pipelines, ATS resume engineering, and mock drills.',
     badge: 'Track 03 • Placements',
     serviceId: 'jobs-placement',
     accentColor: '#10b981',
@@ -86,10 +86,10 @@ export const ASCEND_TRACKS: AscendTrack[] = [
       'Continuous Interview Support till Onboarding'
     ],
     image: {
-      url: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=1000&q=80',
-      alt: 'Corporate Placement & Executive Interview',
-      focalPosition: 'center 18%', // Keeps interviewer face and gesture in view
-      caption: 'Simulated Corporate Boardroom Interview'
+      url: '/images/jobs-placement-readiness.jpg',
+      alt: 'Jobs & Placement Readiness 3D Architectural Campus',
+      focalPosition: 'center 40%',
+      caption: 'Jobs & Placement Readiness • Accelerate Your Career Journey'
     }
   },
   {
@@ -134,9 +134,9 @@ export const ASCEND_TRACKS: AscendTrack[] = [
       'Holland Code (RIASEC) Career Match Index'
     ],
     image: {
-      url: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1000&q=80',
-      alt: 'Psychometric and Cognitive Assessment',
-      focalPosition: 'center 22%',
+      url: '/images/discover-your-strengths-assessment.jpg',
+      alt: 'Discover Your Strengths - Psychometric and Aptitude Testing Campus',
+      focalPosition: 'center 45%',
       caption: 'Standardized Aptitude & Personality Battery'
     }
   },
@@ -230,9 +230,9 @@ export const ASCEND_TRACKS: AscendTrack[] = [
       'Embassy Interview Preparation & Mock Visa Q&A'
     ],
     image: {
-      url: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1000&q=80',
+      url: 'https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=1000&q=80',
       alt: 'Scholarship Graduate Celebration',
-      focalPosition: 'center 20%',
+      focalPosition: 'center 25%',
       caption: 'DSU Grant Recipients & University Enrollees'
     }
   },

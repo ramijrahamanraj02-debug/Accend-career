@@ -3,6 +3,8 @@ export type NavStructure = 'structure-1' | 'structure-2' | 'structure-3';
 export type ActivePage = 'home' | 'services-hub' | 'service-detail' | 'about' | 'contact';
 
 export type ServiceId =
+  | 'web-services'
+  | 'graphic-design'
   | 'career-guidance'
   | 'skill-development'
   | 'jobs-placement'
@@ -52,7 +54,7 @@ export interface ConsultationFormData {
   phone: string;
   currentStatus: 'High School (9-12)' | 'College / Graduate' | 'Working Professional' | 'School / College Admin' | 'HR / Corporate';
   serviceVertical: ServiceId;
-  preferredMode: 'Online Video Session' | 'In-Person Counselling' | 'Phone Assessment';
+  preferredMode: 'In-Person Counselling' | 'Phone Assessment';
   datePreference: string;
   notes: string;
 }

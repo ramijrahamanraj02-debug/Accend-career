@@ -76,47 +76,52 @@ export const Header: React.FC<HeaderProps> = ({
     <header className="sticky top-0 z-40 w-full">
       {/* Main Navigation Bar */}
       <div
-        className={`w-full transition-all duration-200 border-b ${
+        className={`w-full transition-all duration-300 border-b ${
           scrolled
-            ? 'bg-[#0b1120]/95 backdrop-blur-md border-slate-800 shadow-lg'
-            : 'bg-[#0b1120]/90 backdrop-blur-md border-slate-800/60'
+            ? 'bg-[#0D0D0D]/95 backdrop-blur-md border-[#1F1F1F] shadow-xl'
+            : 'bg-[#0D0D0D]/50 backdrop-blur-md border-white/10'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           {/* Brand / Logo */}
           <button
             onClick={() => onNavigate('home')}
-            className="flex items-center gap-3.5 group text-left transition-transform duration-200 hover:scale-[1.02]"
+            className="flex items-center gap-3.5 group text-left transition-transform duration-200 cursor-pointer"
             id="nav-brand-logo"
             aria-label="Ascend Career Home"
           >
             {/* 3D Ascend Logo on the LEFT SIDE */}
-            <AscendLogoMark className="w-11 h-11 sm:w-12 sm:h-12" />
+            <AscendLogoMark className="w-10 h-10 sm:w-11 sm:h-11" />
 
-            {/* Writing on the RIGHT SIDE: ASCEND CAREER / Guide • Train • Place • Grow */}
+            {/* Writing on the RIGHT SIDE: ASCEND CAREER */}
             <div className="flex flex-col justify-center">
               <div className="flex items-center gap-1.5 leading-none">
-                <span className="text-xl sm:text-2xl font-black tracking-tight text-white group-hover:text-teal-300 transition-colors">
+                <span className="text-xl sm:text-2xl font-black tracking-tight text-white group-hover:text-[#E5FE40] transition-colors">
                   ASCEND
                 </span>
-                <span className="text-xl sm:text-2xl font-black tracking-tight text-teal-400">
+                <span
+                  className="text-xl sm:text-2xl font-black tracking-tight text-[#00828A] group-hover:text-[#2dd4bf] transition-colors"
+                  style={{
+                    textShadow: '0 2px 8px rgba(0, 130, 138, 0.45)'
+                  }}
+                >
                   CAREER
                 </span>
               </div>
-              <span className="text-[10px] uppercase font-bold tracking-[0.2em] text-slate-400 group-hover:text-teal-300/90 transition-colors block mt-1">
+              <span className="text-[9px] uppercase font-mono font-bold tracking-[0.22em] text-[#8A8A8A] group-hover:text-white transition-colors block mt-1">
                 ELEVATE TODAY, ACHIEVE TOMORROW
               </span>
             </div>
           </button>
 
-          {/* Center Navigation: EXACTLY as requested: HOME | SERVICES ▾ | ABOUT US | CONTACT US */}
+          {/* Center Navigation */}
           <nav className="hidden md:flex items-center gap-1 lg:gap-2">
             <button
               onClick={() => onNavigate('home')}
-              className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${
+              className={`px-4 py-2 text-xs uppercase tracking-wider font-mono font-semibold transition-colors cursor-pointer ${
                 activePage === 'home'
-                  ? 'text-teal-400 bg-teal-500/10'
-                  : 'text-slate-200 hover:text-white hover:bg-slate-800/60'
+                  ? 'text-white border-b-2 border-[#E5FE40]'
+                  : 'text-[#8A8A8A] hover:text-white'
               }`}
               id="nav-link-home"
             >
@@ -135,10 +140,10 @@ export const Header: React.FC<HeaderProps> = ({
             >
               <button
                 onClick={handleServicesClick}
-                className={`group flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
+                className={`group flex items-center gap-1.5 px-4 py-2 text-xs uppercase tracking-wider font-mono font-semibold transition-all cursor-pointer ${
                   isServicesOpen || activePage === 'services-hub' || activePage === 'service-detail'
-                    ? 'text-teal-400 bg-teal-500/10'
-                    : 'text-slate-200 hover:text-white hover:bg-slate-800/60'
+                    ? 'text-white border-b-2 border-[#E5FE40]'
+                    : 'text-[#8A8A8A] hover:text-white'
                 }`}
                 id="nav-link-services"
                 aria-expanded={isServicesOpen}
@@ -146,14 +151,14 @@ export const Header: React.FC<HeaderProps> = ({
                 <span>Services</span>
                 {navStructure !== 'structure-3' && (
                   <ChevronDown
-                    className={`w-4 h-4 transition-transform duration-200 ${
-                      isServicesOpen ? 'rotate-180 text-teal-400' : 'text-slate-400 group-hover:text-slate-200'
+                    className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                      isServicesOpen ? 'rotate-180 text-white' : 'text-[#8A8A8A] group-hover:text-white'
                     }`}
                   />
                 )}
                 {navStructure === 'structure-3' && (
-                  <span className="text-[10px] bg-teal-950 text-teal-400 px-1.5 py-0.5 rounded border border-teal-500/30">
-                    3D Hub
+                  <span className="text-[9px] bg-[#161616] text-[#E5FE40] px-1.5 py-0.5 border border-[#262626]">
+                    Hub
                   </span>
                 )}
               </button>
@@ -182,10 +187,10 @@ export const Header: React.FC<HeaderProps> = ({
 
             <button
               onClick={() => onNavigate('about')}
-              className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${
+              className={`px-4 py-2 text-xs uppercase tracking-wider font-mono font-semibold transition-colors cursor-pointer ${
                 activePage === 'about'
-                  ? 'text-teal-400 bg-teal-500/10'
-                  : 'text-slate-200 hover:text-white hover:bg-slate-800/60'
+                  ? 'text-white border-b-2 border-[#E5FE40]'
+                  : 'text-[#8A8A8A] hover:text-white'
               }`}
               id="nav-link-about"
             >
@@ -194,10 +199,10 @@ export const Header: React.FC<HeaderProps> = ({
 
             <button
               onClick={() => onNavigate('contact')}
-              className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${
+              className={`px-4 py-2 text-xs uppercase tracking-wider font-mono font-semibold transition-colors cursor-pointer ${
                 activePage === 'contact'
-                  ? 'text-teal-400 bg-teal-500/10'
-                  : 'text-slate-200 hover:text-white hover:bg-slate-800/60'
+                  ? 'text-white border-b-2 border-[#E5FE40]'
+                  : 'text-[#8A8A8A] hover:text-white'
               }`}
               id="nav-link-contact"
             >
@@ -205,22 +210,22 @@ export const Header: React.FC<HeaderProps> = ({
             </button>
           </nav>
 
-          {/* Right Side CTA: Book a Consultation */}
+          {/* Right Side CTA: Book a Consultation (CRED NeoPOP 3D Tactile Button) */}
           <div className="hidden sm:flex items-center gap-3">
             <button
               onClick={onOpenConsultation}
-              className="relative group px-5 py-2.5 rounded-xl bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-400 hover:to-teal-500 text-slate-950 font-bold text-sm shadow-md shadow-teal-500/20 hover:shadow-teal-500/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-150 flex items-center gap-2"
+              className="px-5 py-2.5 bg-[#E5FE40] text-[#0D0D0D] font-bold text-xs uppercase tracking-wider cred-btn-tactile cred-box-white flex items-center gap-2 cursor-pointer hover:bg-[#d8f235]"
               id="header-book-consultation-btn"
             >
-              <Calendar className="w-4 h-4 text-slate-950" />
-              <span>Book a Consultation</span>
+              <Calendar className="w-3.5 h-3.5" />
+              <span>Book Consultation</span>
             </button>
           </div>
 
           {/* Mobile Menu Toggle */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-colors"
+            className="md:hidden p-2 text-[#8A8A8A] hover:text-white cursor-pointer"
             id="mobile-menu-toggle"
             aria-label="Toggle Navigation Menu"
           >
@@ -232,7 +237,7 @@ export const Header: React.FC<HeaderProps> = ({
       {/* Mobile Drawer */}
       {isMobileMenuOpen && (
         <div
-          className="md:hidden bg-[#090f1d] border-b border-slate-800 px-5 py-6 space-y-4 max-h-[85vh] overflow-y-auto"
+          className="md:hidden bg-[#161616] border-b border-[#262626] px-5 py-6 space-y-4 max-h-[85vh] overflow-y-auto cred-box-dark"
           id="mobile-drawer"
         >
           <div className="space-y-1">
@@ -241,7 +246,7 @@ export const Header: React.FC<HeaderProps> = ({
                 onNavigate('home');
                 setIsMobileMenuOpen(false);
               }}
-              className="w-full text-left px-4 py-2.5 rounded-lg font-semibold text-slate-200 hover:bg-slate-800"
+              className="w-full text-left px-4 py-2.5 font-mono text-xs uppercase tracking-wider font-semibold text-white hover:bg-[#1F1F1F]"
             >
               Home
             </button>
@@ -250,10 +255,10 @@ export const Header: React.FC<HeaderProps> = ({
             <div>
               <button
                 onClick={() => setIsMobileServicesExpanded(!isMobileServicesExpanded)}
-                className="w-full flex items-center justify-between px-4 py-2.5 rounded-lg font-semibold text-teal-400 bg-slate-900 border border-slate-800"
+                className="w-full flex items-center justify-between px-4 py-2.5 font-mono text-xs uppercase tracking-wider font-semibold text-[#E5FE40] bg-[#1F1F1F] border border-[#333333]"
               >
                 <div className="flex items-center gap-2">
-                  <span>Services (All 7 Verticals)</span>
+                  <span>Services (01 Career to 09 Web)</span>
                 </div>
                 <ChevronDown
                   className={`w-4 h-4 transition-transform ${
@@ -263,15 +268,15 @@ export const Header: React.FC<HeaderProps> = ({
               </button>
 
               {isMobileServicesExpanded && (
-                <div className="mt-2 pl-3 space-y-1 border-l-2 border-teal-500/30 ml-3">
+                <div className="mt-2 pl-3 space-y-1 border-l-2 border-[#E5FE40] ml-3">
                   <button
                     onClick={() => {
                       onNavigate('services-hub');
                       setIsMobileMenuOpen(false);
                     }}
-                    className="w-full text-left px-3 py-2 text-xs font-bold text-teal-300 bg-teal-950/40 rounded-lg flex items-center justify-between"
+                    className="w-full text-left px-3 py-2 text-xs font-bold text-[#E5FE40] bg-[#1F1F1F] flex items-center justify-between border border-[#333333]"
                   >
-                    <span>✦ View All 7 in 3D Gateway</span>
+                    <span>View All Services</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </button>
 
@@ -282,9 +287,9 @@ export const Header: React.FC<HeaderProps> = ({
                         onSelectService(s);
                         setIsMobileMenuOpen(false);
                       }}
-                      className="w-full text-left px-3 py-2 rounded-lg text-xs font-medium text-slate-300 hover:text-teal-300 hover:bg-slate-800/80 flex items-center gap-2.5"
+                      className="w-full text-left px-3 py-2 text-xs font-medium text-[#A3A3A3] hover:text-white hover:bg-[#1F1F1F] flex items-center gap-2.5"
                     >
-                      <ServiceIcon id={s.id} className="w-3.5 h-3.5 text-teal-400 shrink-0" />
+                      <span className="font-mono text-[10px] text-[#E5FE40]">{s.numericCode}</span>
                       <span className="truncate">{s.title}</span>
                     </button>
                   ))}
@@ -297,7 +302,7 @@ export const Header: React.FC<HeaderProps> = ({
                 onNavigate('about');
                 setIsMobileMenuOpen(false);
               }}
-              className="w-full text-left px-4 py-2.5 rounded-lg font-semibold text-slate-200 hover:bg-slate-800"
+              className="w-full text-left px-4 py-2.5 font-mono text-xs uppercase tracking-wider text-white hover:bg-[#1F1F1F]"
             >
               About Us
             </button>
@@ -307,22 +312,22 @@ export const Header: React.FC<HeaderProps> = ({
                 onNavigate('contact');
                 setIsMobileMenuOpen(false);
               }}
-              className="w-full text-left px-4 py-2.5 rounded-lg font-semibold text-slate-200 hover:bg-slate-800"
+              className="w-full text-left px-4 py-2.5 font-mono text-xs uppercase tracking-wider text-white hover:bg-[#1F1F1F]"
             >
               Contact Us
             </button>
           </div>
 
-          <div className="pt-4 border-t border-slate-800 space-y-3">
+          <div className="pt-4 border-t border-[#262626] space-y-3">
             <button
               onClick={() => {
                 onOpenConsultation();
                 setIsMobileMenuOpen(false);
               }}
-              className="w-full py-3 rounded-xl bg-teal-500 text-slate-950 font-bold text-center flex items-center justify-center gap-2 shadow-lg shadow-teal-500/20"
+              className="w-full py-3.5 bg-[#E5FE40] text-[#0D0D0D] font-bold text-xs uppercase tracking-wider text-center flex items-center justify-center gap-2 cred-btn-tactile cred-box-white"
             >
               <Calendar className="w-4 h-4" />
-              <span>Book a Consultation</span>
+              <span>Book Consultation</span>
             </button>
           </div>
         </div>

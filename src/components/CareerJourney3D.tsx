@@ -36,7 +36,7 @@ const JOURNEY_STEPS: JourneyStep[] = [
     title: 'Job Placement & Corporate Connect',
     subtitle: 'PLACE',
     icon: <Briefcase className="w-5 h-5" />,
-    description: 'Direct pipeline to 50+ hiring corporate partners with ATS-tailored resume engineering, 1-on-1 mock technical interviews, and salary negotiation.',
+    description: 'Direct pipeline to 500+ hiring partner companies with ATS-tailored resume engineering, 1-on-1 mock technical interviews, and salary negotiation.',
     deliverables: ['ATS resume overhaul', 'Direct recruiter referrals', 'Offer negotiation guidance']
   },
   {

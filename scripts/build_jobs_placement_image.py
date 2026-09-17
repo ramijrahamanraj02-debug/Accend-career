@@ -1,0 +1,942 @@
+import os
+import subprocess
+
+def generate_svg():
+    svg_content = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <defs>
+    <!-- Background Ambient Gradients -->
+    <linearGradient id="bg-ambient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#474f56" />
+      <stop offset="25%" stop-color="#343c44" />
+      <stop offset="55%" stop-color="#242b33" />
+      <stop offset="85%" stop-color="#181f26" />
+      <stop offset="100%" stop-color="#0e1318" />
+    </linearGradient>
+
+    <!-- Warm Golden Light Flare from Top Left -->
+    <radialGradient id="warm-light-flare" cx="15%" cy="15%" r="60%">
+      <stop offset="0%" stop-color="#fffbeb" stop-opacity="0.9" />
+      <stop offset="25%" stop-color="#fde68a" stop-opacity="0.55" />
+      <stop offset="55%" stop-color="#d97706" stop-opacity="0.2" />
+      <stop offset="100%" stop-color="#181f26" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Floor Pavement Gradient -->
+    <linearGradient id="campus-floor" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2c3540" />
+      <stop offset="40%" stop-color="#222a33" />
+      <stop offset="80%" stop-color="#181e25" />
+      <stop offset="100%" stop-color="#10151a" />
+    </linearGradient>
+
+    <!-- Glowing Cyan Circuit Traces -->
+    <linearGradient id="cyan-circuit" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0284c7" />
+      <stop offset="50%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#67e8f9" />
+    </linearGradient>
+
+    <!-- Gold Metallic Plaque Gradient -->
+    <linearGradient id="gold-metal-frame" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="15%" stop-color="#fef08a" />
+      <stop offset="45%" stop-color="#d97706" />
+      <stop offset="75%" stop-color="#92400e" />
+      <stop offset="90%" stop-color="#fef08a" />
+      <stop offset="100%" stop-color="#451a03" />
+    </linearGradient>
+
+    <!-- Gold Text Metallic Gradient -->
+    <linearGradient id="gold-text-metal" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="25%" stop-color="#fef08a" />
+      <stop offset="60%" stop-color="#d97706" />
+      <stop offset="100%" stop-color="#78350f" />
+    </linearGradient>
+
+    <!-- CPU Motherboard Chip Gradient -->
+    <linearGradient id="cpu-silicon" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" />
+      <stop offset="50%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#020617" />
+    </linearGradient>
+
+    <!-- Brain Core Glow -->
+    <radialGradient id="brain-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="30%" stop-color="#fde047" />
+      <stop offset="70%" stop-color="#eab308" />
+      <stop offset="100%" stop-color="#ca8a04" />
+    </radialGradient>
+
+    <!-- Geodesic Dome Glass Gradient -->
+    <radialGradient id="dome-glass-glow" cx="45%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.8" />
+      <stop offset="25%" stop-color="#bae6fd" stop-opacity="0.5" />
+      <stop offset="65%" stop-color="#0284c7" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="#082f49" stop-opacity="0.65" />
+    </radialGradient>
+
+    <!-- Glowing Microphone Core -->
+    <linearGradient id="mic-gold" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="25%" stop-color="#fef08a" />
+      <stop offset="70%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#b45309" />
+    </linearGradient>
+
+    <!-- Dark Plaque Inset Background -->
+    <linearGradient id="tablet-inner" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fbfaf7" />
+      <stop offset="40%" stop-color="#f3ede2" />
+      <stop offset="85%" stop-color="#e5dcce" />
+      <stop offset="100%" stop-color="#d6cab9" />
+    </linearGradient>
+  </defs>
+
+  <!-- ================= 1. BACKGROUND & AMBIENT GLOW ================= -->
+  <rect x="0" y="0" width="1920" height="1080" fill="url(#bg-ambient)" />
+  <rect x="0" y="0" width="1920" height="650" fill="url(#warm-light-flare)" />
+
+  <!-- Isometric Campus Floor -->
+  <polygon points="960,110 1920,450 1920,880 960,1050 0,880 0,450" fill="url(#campus-floor)" opacity="0.9" />
+
+  <!-- GLOWING CYAN CIRCUIT PATHWAYS ON CAMPUS FLOOR -->
+  <g stroke="#38bdf8" stroke-width="3" fill="none" opacity="0.85" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Center to Top Accelerator -->
+    <path d="M 960 550 L 960 270" stroke-width="8" stroke="#0284c7" />
+    <path d="M 960 550 L 960 270" stroke-width="3" stroke="#67e8f9" />
+    <!-- Pathways from Center to Left CPU Chip -->
+    <path d="M 920 610 L 650 670 L 450 670" stroke-width="4" stroke="#38bdf8" />
+    <path d="M 900 630 L 630 700 L 520 700" />
+    <path d="M 880 650 L 600 730 L 350 730" stroke-width="3" />
+    <path d="M 520 670 L 520 600 L 480 600" />
+    <path d="M 580 730 L 580 800 L 640 800" />
+
+    <!-- Pathways from Center to Left Plaza -->
+    <path d="M 900 520 L 720 460 L 620 460 L 540 370" stroke-width="4" stroke="#38bdf8" />
+    <path d="M 910 500 L 740 430 L 650 430 L 580 340" />
+
+    <!-- Pathways from Center to Right Neoclassical & Dome -->
+    <path d="M 1020 590 L 1180 630 L 1380 630" stroke-width="5" stroke="#38bdf8" />
+    <path d="M 1040 610 L 1200 660 L 1420 660 L 1480 730" stroke-width="4" />
+    <path d="M 1030 540 L 1180 500 L 1260 500" stroke-width="4" />
+    <path d="M 1040 510 L 1220 440 L 1360 440 L 1420 370" stroke-width="3" />
+
+    <!-- Radiant Cyan Circuit Nodes (Glowing Dots) -->
+    <g fill="#67e8f9" stroke="#ffffff" stroke-width="1.5">
+      <circle cx="650" cy="670" r="5" />
+      <circle cx="630" cy="700" r="4" />
+      <circle cx="600" cy="730" r="5" />
+      <circle cx="720" cy="460" r="5" />
+      <circle cx="620" cy="460" r="4" />
+      <circle cx="1180" cy="630" r="5" />
+      <circle cx="1200" cy="660" r="5" />
+      <circle cx="1420" cy="660" r="5" />
+      <circle cx="1180" cy="500" r="5" />
+    </g>
+  </g>
+
+  <!-- ================= 2. TOP-CENTER: PLACEMENT READINESS ACCELERATOR ================= -->
+  <g id="placement-accelerator" transform="translate(960, 200)">
+    <!-- Cyan Energy Radiance -->
+    <ellipse cx="0" cy="60" rx="190" ry="70" fill="#0284c7" fill-opacity="0.3" />
+    <ellipse cx="0" cy="55" rx="140" ry="50" fill="#38bdf8" fill-opacity="0.4" />
+
+    <!-- Tiered Outer Metallic Ring -->
+    <ellipse cx="0" cy="55" rx="160" ry="55" fill="#1e293b" stroke="#38bdf8" stroke-width="4" />
+    <ellipse cx="0" cy="50" rx="135" ry="46" fill="#334155" stroke="#fde047" stroke-width="2" />
+    <ellipse cx="0" cy="45" rx="110" ry="38" fill="#0f172a" stroke="#38bdf8" stroke-width="3" />
+
+    <!-- Floating Cyan Energy Rings -->
+    <ellipse cx="0" cy="20" rx="90" ry="30" fill="none" stroke="#67e8f9" stroke-width="3" stroke-dasharray="8 6" />
+    <ellipse cx="0" cy="0" rx="75" ry="25" fill="none" stroke="#38bdf8" stroke-width="2.5" />
+
+    <!-- Central Turbine Pillar with Golden Gear Cog -->
+    <path d="M -40 25 L -40 -60 L 40 -60 L 40 25 Z" fill="#1e293b" stroke="#0284c7" stroke-width="3" />
+    <ellipse cx="0" cy="-60" rx="40" ry="14" fill="#334155" stroke="#fde047" stroke-width="2" />
+
+    <!-- Golden Turbine Gear with World Globe Center -->
+    <g transform="translate(0, -90)">
+      <circle cx="0" cy="0" r="46" fill="#ca8a04" stroke="#fef08a" stroke-width="4" />
+      <!-- Gear Teeth -->
+      <g fill="#ca8a04" stroke="#fef08a" stroke-width="2">
+        <rect x="-8" y="-55" width="16" height="12" rx="2" />
+        <rect x="-8" y="43" width="16" height="12" rx="2" />
+        <rect x="-55" y="-8" width="12" height="16" rx="2" />
+        <rect x="43" y="-8" width="12" height="16" rx="2" />
+        <rect x="-42" y="-42" width="14" height="14" rx="2" transform="rotate(45 -35 -35)" />
+        <rect x="28" y="28" width="14" height="14" rx="2" transform="rotate(45 35 35)" />
+        <rect x="28" y="-42" width="14" height="14" rx="2" transform="rotate(-45 35 -35)" />
+        <rect x="-42" y="28" width="14" height="14" rx="2" transform="rotate(-45 -35 35)" />
+      </g>
+      <!-- Central Blue World Globe inside Gear -->
+      <circle cx="0" cy="0" r="30" fill="#0284c7" stroke="#ffffff" stroke-width="2.5" />
+      <ellipse cx="0" cy="0" rx="28" ry="12" fill="none" stroke="#ffffff" stroke-width="2" />
+      <line x1="0" y1="-30" x2="0" y2="30" stroke="#ffffff" stroke-width="2" />
+      <line x1="-30" y1="0" x2="30" y2="0" stroke="#ffffff" stroke-width="2" />
+    </g>
+
+    <!-- Top Badge Pill -->
+    <g transform="translate(0, -170)">
+      <rect x="-165" y="0" width="330" height="42" rx="21" fill="#0f172a" fill-opacity="0.9" stroke="#334155" stroke-width="2" />
+      <text x="0" y="27" font-family="'Segoe UI', Roboto, sans-serif" font-weight="800" font-size="16" fill="#ffffff" text-anchor="middle" letter-spacing="0.5">Placement Readiness Accelerator</text>
+    </g>
+  </g>
+
+  <!-- ================= 3. TOP-LEFT: GLOBAL NETWORK & CORPORATE CONNECTIONS PLAZA ================= -->
+  <g id="corporate-connections-plaza" transform="translate(480, 260)">
+    <!-- Terraced Elevated Circular Plaza -->
+    <ellipse cx="0" cy="65" rx="190" ry="75" fill="#ded5c4" stroke="#94a3b8" stroke-width="4" />
+    <ellipse cx="0" cy="60" rx="170" ry="65" fill="#efe9df" stroke="#38bdf8" stroke-width="3" />
+    <ellipse cx="0" cy="55" rx="150" ry="55" fill="#cbd5e1" />
+
+    <!-- Concentric Target Rings -->
+    <ellipse cx="0" cy="55" rx="120" ry="42" fill="none" stroke="#38bdf8" stroke-width="3" />
+    <ellipse cx="0" cy="55" rx="85" ry="30" fill="none" stroke="#0284c7" stroke-width="2" stroke-dasharray="6 4" />
+
+    <!-- Network Constellation Lines Radiating From Globe -->
+    <g stroke="#ffffff" stroke-width="2" fill="none" opacity="0.8">
+      <line x1="-30" y1="-40" x2="-140" y2="-70" />
+      <line x1="-50" y1="0" x2="-175" y2="10" />
+      <line x1="30" y1="-40" x2="100" y2="-90" />
+      <line x1="50" y1="-20" x2="145" y2="-40" />
+      <line x1="40" y1="20" x2="135" y2="70" />
+      <line x1="-30" y1="40" x2="-90" y2="90" />
+    </g>
+
+    <!-- Network Nodes Icons -->
+    <!-- Node 1: Top Left Globe -->
+    <circle cx="-140" cy="-70" r="22" fill="#0284c7" stroke="#ffffff" stroke-width="3" />
+    <ellipse cx="-140" cy="-70" rx="20" ry="8" fill="none" stroke="#ffffff" stroke-width="1.5" />
+    <line x1="-140" y1="-92" x2="-140" y2="-48" stroke="#ffffff" stroke-width="1.5" />
+
+    <!-- Node 2: Far Left Corporate Towers -->
+    <circle cx="-175" cy="10" r="20" fill="#3b82f6" stroke="#ffffff" stroke-width="2.5" />
+    <rect x="-183" y="2" width="6" height="12" fill="#ffffff" />
+    <rect x="-174" y="-3" width="8" height="17" fill="#ffffff" />
+
+    <!-- Node 3: Top Right Google 'G' -->
+    <circle cx="100" cy="-90" r="22" fill="#ffffff" stroke="#cbd5e1" stroke-width="3" />
+    <text x="100" y="-82" font-family="'Segoe UI', Roboto, sans-serif" font-weight="900" font-size="22" fill="#ea4335" text-anchor="middle">G</text>
+
+    <!-- Node 4: Mid Right Enterprise Office -->
+    <circle cx="145" cy="-40" r="20" fill="#0284c7" stroke="#ffffff" stroke-width="2.5" />
+    <rect x="137" y="-48" width="16" height="16" rx="2" fill="#ffffff" />
+
+    <!-- Node 5: Lower Right Ascending Bar Chart -->
+    <circle cx="135" cy="70" r="20" fill="#10b981" stroke="#ffffff" stroke-width="2.5" />
+    <line x1="126" y1="76" x2="126" y2="70" stroke="#ffffff" stroke-width="2.5" />
+    <line x1="132" y1="76" x2="132" y2="64" stroke="#ffffff" stroke-width="2.5" />
+    <line x1="138" y1="76" x2="138" y2="58" stroke="#ffffff" stroke-width="2.5" />
+    <line x1="144" y1="76" x2="144" y2="60" stroke="#ffffff" stroke-width="2.5" />
+
+    <!-- Node 6: Bottom Hand with Offer / Coin -->
+    <circle cx="-90" cy="90" r="20" fill="#ca8a04" stroke="#ffffff" stroke-width="2.5" />
+    <ellipse cx="-90" cy="88" rx="8" ry="5" fill="#fef08a" />
+
+    <!-- CENTRAL MASSIVE BLUE GLOBE WITH GOLDEN SHAKE HANDS -->
+    <g transform="translate(0, 10)">
+      <!-- Giant Blue World Globe -->
+      <circle cx="0" cy="0" r="72" fill="#0284c7" stroke="#ffffff" stroke-width="4" />
+      <!-- Latitude & Longitude Grids -->
+      <ellipse cx="0" cy="0" rx="70" ry="28" fill="none" stroke="#38bdf8" stroke-width="2.5" />
+      <ellipse cx="0" cy="0" rx="70" ry="52" fill="none" stroke="#38bdf8" stroke-width="2" />
+      <ellipse cx="0" cy="0" rx="28" ry="70" fill="none" stroke="#38bdf8" stroke-width="2.5" />
+
+      <!-- Golden Handshake In Front of Globe -->
+      <!-- Left Hand & Navy Suit Cuff -->
+      <polygon points="-65,10 -35,-5 -20,12 -50,28" fill="#1e3a8a" stroke="#ffffff" stroke-width="1.5" />
+      <polygon points="-35,-5 -15,10 -20,20 -40,5" fill="#ffffff" />
+      <!-- Right Hand & Suit Cuff -->
+      <polygon points="65,10 35,-5 20,12 50,28" fill="#1e3a8a" stroke="#ffffff" stroke-width="1.5" />
+      <polygon points="35,-5 15,10 20,20 40,5" fill="#ffffff" />
+      <!-- Clasping Hands (Warm Golden Flesh Tones) -->
+      <ellipse cx="0" cy="10" rx="24" ry="18" fill="#f59e0b" stroke="#78350f" stroke-width="2" />
+      <!-- Fingers Interlocking -->
+      <path d="M -12 4 Q 0 16 12 4" stroke="#78350f" stroke-width="3" fill="none" />
+      <path d="M -8 10 Q 0 22 8 10" stroke="#78350f" stroke-width="2.5" fill="none" />
+    </g>
+
+    <!-- Top Floating Header Badge -->
+    <g transform="translate(0, -145)">
+      <rect x="-185" y="0" width="370" height="46" rx="23" fill="#0f172a" fill-opacity="0.9" stroke="#334155" stroke-width="2" />
+      <text x="0" y="29" font-family="'Segoe UI', Roboto, sans-serif" font-weight="800" font-size="15" fill="#ffffff" text-anchor="middle">Global Network &amp; Corporate Connections Plaza</text>
+    </g>
+  </g>
+
+  <!-- ================= 4. MID-LEFT: INDUSTRY SKILLS UPSKILLING LAB ================= -->
+  <g id="upskilling-lab" transform="translate(680, 420)">
+    <!-- Cutaway Glass Room Floor & Isometric Walls -->
+    <polygon points="-120,40 40,-35 150,25 -10,100" fill="#1e293b" stroke="#38bdf8" stroke-width="3" />
+    <!-- Left Glass Wall -->
+    <polygon points="-120,40 40,-35 40,-130 -120,-55" fill="#0284c7" fill-opacity="0.25" stroke="#38bdf8" stroke-width="2.5" />
+    <!-- Right Glass Wall -->
+    <polygon points="40,-35 150,25 150,-70 40,-130" fill="#0284c7" fill-opacity="0.15" stroke="#38bdf8" stroke-width="2.5" />
+
+    <!-- Big Golden Gear on Lab Wall -->
+    <g transform="translate(40, -85) scale(0.6)">
+      <circle cx="0" cy="0" r="30" fill="#f59e0b" stroke="#fde047" stroke-width="3" />
+      <circle cx="0" cy="0" r="14" fill="#1e293b" />
+      <g fill="#f59e0b">
+        <rect x="-6" y="-36" width="12" height="10" rx="2" />
+        <rect x="-6" y="26" width="12" height="10" rx="2" />
+        <rect x="-36" y="-6" width="10" height="12" rx="2" />
+        <rect x="26" y="-6" width="10" height="12" rx="2" />
+      </g>
+    </g>
+
+    <!-- Lab Developer Workstations & Dual Monitors Inside -->
+    <!-- Pod 1: Engineering, Software -->
+    <g transform="translate(-40, 20)">
+      <rect x="-30" y="-10" width="45" height="25" fill="#334155" stroke="#64748b" stroke-width="1.5" />
+      <!-- Glowing Screens -->
+      <rect x="-26" y="-28" width="18" height="15" fill="#0284c7" stroke="#38bdf8" stroke-width="1" />
+      <rect x="-6" y="-28" width="18" height="15" fill="#0284c7" stroke="#38bdf8" stroke-width="1" />
+      <!-- Coder Figure -->
+      <circle cx="-12" cy="-4" r="5" fill="#f8fafc" />
+      <rect x="-16" y="1" width="8" height="14" fill="#3b82f6" />
+    </g>
+
+    <!-- Pod 2: Data Science -->
+    <g transform="translate(70, -5)">
+      <rect x="-25" y="-10" width="40" height="22" fill="#334155" stroke="#64748b" stroke-width="1.5" />
+      <rect x="-22" y="-26" width="16" height="14" fill="#38bdf8" stroke="#ffffff" stroke-width="1" />
+      <rect x="-4" y="-26" width="16" height="14" fill="#38bdf8" stroke="#ffffff" stroke-width="1" />
+      <circle cx="-10" cy="-3" r="5" fill="#f8fafc" />
+      <rect x="-14" y="2" width="8" height="14" fill="#10b981" />
+    </g>
+
+    <!-- Room Floor Labels -->
+    <text x="-60" y="80" font-family="'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="12" fill="#94a3b8">Engineering, Software</text>
+    <text x="50" y="60" font-family="'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="12" fill="#94a3b8">Data Science</text>
+
+    <!-- Floating Header Badge -->
+    <g transform="translate(40, -180)">
+      <rect x="-105" y="0" width="210" height="52" rx="8" fill="#0f172a" stroke="#334155" stroke-width="2" />
+      <text x="0" y="22" font-family="'Segoe UI', Roboto, sans-serif" font-weight="800" font-size="14" fill="#ffffff" text-anchor="middle">Industry Skills</text>
+      <text x="0" y="42" font-family="'Segoe UI', Roboto, sans-serif" font-weight="800" font-size="14" fill="#ffffff" text-anchor="middle">Upskilling Lab</text>
+    </g>
+  </g>
+
+  <!-- ================= 5. BOTTOM-LEFT: AI-POWERED JOB MATCHING ENGINE ================= -->
+  <g id="ai-job-matching-engine" transform="translate(360, 640)">
+    <!-- Base Silicon Motherboard Platform -->
+    <polygon points="-260,70 -10,-60 240,70 -10,200" fill="url(#cpu-silicon)" stroke="#334155" stroke-width="4" />
+    <polygon points="-270,80 -10,-50 250,80 -10,210" fill="none" stroke="#38bdf8" stroke-width="2" opacity="0.6" />
+
+    <!-- Gold Connection Pins along edges -->
+    <g stroke="#f59e0b" stroke-width="3" opacity="0.9">
+      <!-- Left Edge Pins -->
+      <line x1="-240" y1="80" x2="-255" y2="90" />
+      <line x1="-210" y1="65" x2="-225" y2="75" />
+      <line x1="-180" y1="50" x2="-195" y2="60" />
+      <line x1="-150" y1="35" x2="-165" y2="45" />
+      <line x1="-120" y1="20" x2="-135" y2="30" />
+      <line x1="-90" y1="5" x2="-105" y2="15" />
+      <line x1="-60" y1="-10" x2="-75" y2="0" />
+      <line x1="-30" y1="-25" x2="-45" y2="-15" />
+      <!-- Right Edge Pins -->
+      <line x1="220" y1="80" x2="235" y2="90" />
+      <line x1="190" y1="65" x2="205" y2="75" />
+      <line x1="160" y1="50" x2="175" y2="60" />
+      <line x1="130" y1="35" x2="145" y2="45" />
+      <line x1="100" y1="20" x2="115" y2="30" />
+      <line x1="70" y1="5" x2="85" y2="15" />
+      <line x1="40" y1="-10" x2="55" y2="0" />
+      <line x1="10" y1="-25" x2="25" y2="-15" />
+    </g>
+
+    <!-- Central Microprocessor Inset Socket -->
+    <polygon points="-160,70 -10,-10 140,70 -10,150" fill="#0f172a" stroke="#0284c7" stroke-width="3" />
+    <ellipse cx="-10" cy="70" rx="85" ry="42" fill="none" stroke="#fde047" stroke-width="2.5" />
+
+    <!-- GLOWING GOLDEN BRAIN PROCESSOR CORE -->
+    <g transform="translate(-10, 65)">
+      <!-- Radiating Neural Energy -->
+      <ellipse cx="0" cy="0" rx="55" ry="32" fill="url(#brain-glow)" />
+      <!-- Brain Hemisphere Contours -->
+      <!-- Left Hemisphere -->
+      <path d="M -3 0 C -12 -22 -42 -15 -42 0 C -42 16 -12 24 -3 0" fill="#fef08a" stroke="#78350f" stroke-width="2.5" />
+      <path d="M -30 -5 Q -20 -15 -12 -5 Q -24 5 -15 12" stroke="#b45309" stroke-width="2" fill="none" />
+      <!-- Right Hemisphere -->
+      <path d="M 3 0 C 12 -22 42 -15 42 0 C 42 16 12 24 3 0" fill="#fef08a" stroke="#78350f" stroke-width="2.5" />
+      <path d="M 30 -5 Q 20 -15 12 -5 Q 24 5 15 12" stroke="#b45309" stroke-width="2" fill="none" />
+    </g>
+
+    <!-- Translucent Holographic Vertical Job Matching Screens (Standing on Chip) -->
+    <!-- Screen 1: Front Left -->
+    <g transform="translate(-190, -40)">
+      <rect x="0" y="0" width="130" height="95" rx="6" fill="#0f172a" fill-opacity="0.85" stroke="#38bdf8" stroke-width="2" />
+      <!-- Header -->
+      <rect x="10" y="10" width="110" height="14" rx="3" fill="#0284c7" />
+      <text x="65" y="21" font-family="'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="10" fill="#ffffff" text-anchor="middle">Job Matching</text>
+      <!-- Item Rows with Green Badges -->
+      <rect x="10" y="32" width="110" height="18" rx="3" fill="#1e293b" />
+      <circle cx="22" cy="41" r="5" fill="#10b981" />
+      <rect x="34" y="38" width="55" height="6" rx="2" fill="#94a3b8" />
+      <rect x="96" y="36" width="18" height="10" rx="2" fill="#0284c7" />
+
+      <rect x="10" y="58" width="110" height="18" rx="3" fill="#1e293b" />
+      <circle cx="22" cy="67" r="5" fill="#10b981" />
+      <rect x="34" y="64" width="65" height="6" rx="2" fill="#94a3b8" />
+      <rect x="96" y="62" width="18" height="10" rx="2" fill="#10b981" />
+    </g>
+
+    <!-- Screen 2: Center Rising Vertical Green Glass Screen -->
+    <g transform="translate(60, -90)">
+      <polygon points="0,20 80,-20 80,120 0,160" fill="#0284c7" fill-opacity="0.3" stroke="#22c55e" stroke-width="2.5" />
+      <!-- Content on tilted screen -->
+      <g transform="translate(15, 10)">
+        <rect x="0" y="15" width="55" height="12" rx="2" fill="#0f172a" />
+        <circle cx="8" cy="21" r="4" fill="#22c55e" />
+        <rect x="16" y="18" width="32" height="6" rx="1" fill="#ffffff" />
+
+        <rect x="0" y="40" width="55" height="12" rx="2" fill="#0f172a" />
+        <circle cx="8" cy="46" r="4" fill="#22c55e" />
+        <rect x="16" y="43" width="32" height="6" rx="1" fill="#ffffff" />
+
+        <rect x="0" y="65" width="55" height="12" rx="2" fill="#0f172a" />
+        <circle cx="8" cy="71" r="4" fill="#22c55e" />
+        <rect x="16" y="68" width="32" height="6" rx="1" fill="#ffffff" />
+      </g>
+    </g>
+
+    <!-- Floating Header Badge -->
+    <g transform="translate(-10, -170)">
+      <rect x="-125" y="0" width="250" height="50" rx="8" fill="#0f172a" stroke="#334155" stroke-width="2" />
+      <text x="0" y="21" font-family="'Segoe UI', Roboto, sans-serif" font-weight="800" font-size="14" fill="#ffffff" text-anchor="middle">AI-Powered</text>
+      <text x="0" y="40" font-family="'Segoe UI', Roboto, sans-serif" font-weight="800" font-size="14" fill="#ffffff" text-anchor="middle">Job Matching Engine</text>
+    </g>
+
+    <!-- Lower Floating Label: Targeted CV Development -->
+    <g transform="translate(-160, 130)">
+      <rect x="-90" y="0" width="180" height="38" rx="6" fill="#0f172a" fill-opacity="0.9" stroke="#334155" stroke-width="2" />
+      <text x="0" y="16" font-family="'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="12" fill="#ffffff" text-anchor="middle">Targeted CV</text>
+      <text x="0" y="31" font-family="'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="12" fill="#38bdf8" text-anchor="middle">Development</text>
+    </g>
+  </g>
+
+  <!-- ================= 6. CENTER: PLACEMENT MATRIX HUB & GAP ANALYSIS ================= -->
+  <g id="placement-matrix-hub" transform="translate(960, 560)">
+    <!-- Concentric Glowing Radial Hub -->
+    <ellipse cx="0" cy="40" rx="140" ry="50" fill="#1e293b" stroke="#38bdf8" stroke-width="4" />
+    <ellipse cx="0" cy="35" rx="110" ry="38" fill="#0f172a" stroke="#fde047" stroke-width="2.5" />
+    <ellipse cx="0" cy="30" rx="80" ry="26" fill="#0284c7" fill-opacity="0.4" stroke="#67e8f9" stroke-width="2" />
+
+    <!-- Center Floating Badge: Placement Matrix Hub -->
+    <g transform="translate(0, -50)">
+      <rect x="-80" y="0" width="160" height="46" rx="6" fill="#0f172a" stroke="#334155" stroke-width="2" />
+      <text x="0" y="19" font-family="'Segoe UI', Roboto, sans-serif" font-weight="800" font-size="13" fill="#ffffff" text-anchor="middle">Placement</text>
+      <text x="0" y="37" font-family="'Segoe UI', Roboto, sans-serif" font-weight="800" font-size="13" fill="#38bdf8" text-anchor="middle">Matrix Hub</text>
+    </g>
+
+    <!-- Lower Gateway: Admissions & Skills Gap Analysis -->
+    <g transform="translate(0, 75)">
+      <!-- Sandstone Gateway Portico -->
+      <polygon points="-80,0 80,0 70,55 -70,55" fill="#ded5c4" stroke="#94a3b8" stroke-width="2" />
+      <rect x="-70" y="5" width="140" height="50" fill="#1e293b" />
+      <!-- Golden Gateway Doors -->
+      <rect x="-60" y="15" width="55" height="40" fill="#b45309" stroke="#fde047" stroke-width="2" />
+      <rect x="5" y="15" width="55" height="40" fill="#b45309" stroke="#fde047" stroke-width="2" />
+      <!-- Badge Pill -->
+      <rect x="-105" y="0" width="210" height="34" rx="6" fill="#0f172a" stroke="#334155" stroke-width="2" />
+      <text x="0" y="22" font-family="'Segoe UI', Roboto, sans-serif" font-weight="800" font-size="12" fill="#ffffff" text-anchor="middle">Admissions &amp; Skills Gap Analysis</text>
+    </g>
+
+    <!-- Ascending 3D Column Bar Chart: "Assessment Pathways" -->
+    <g transform="translate(-180, 80)">
+      <!-- Bar 1 (Green) -->
+      <polygon points="-40,10 -25,-5 -25,-40 -40,-25" fill="#16a34a" />
+      <polygon points="-25,-5 -10,10 -10,-25 -25,-40" fill="#22c55e" />
+      <polygon points="-40,-25 -25,-40 -10,-25 -25,-10" fill="#4ade80" />
+
+      <!-- Bar 2 (Yellow) -->
+      <polygon points="-10,25 5,10 5,-50 -10,-35" fill="#ca8a04" />
+      <polygon points="5,10 20,25 20,-35 5,-50" fill="#eab308" />
+      <polygon points="-10,-35 5,-50 20,-35 5,-20" fill="#fde047" />
+
+      <!-- Bar 3 (Cyan/Blue) -->
+      <polygon points="20,40 35,25 35,-65 20,-50" fill="#0284c7" />
+      <polygon points="35,25 50,40 50,-50 35,-65" fill="#38bdf8" />
+      <polygon points="20,-50 35,-65 50,-50 35,-35" fill="#bae6fd" />
+
+      <!-- Golden Curved Trajectory Arrow -->
+      <path d="M -50 25 Q -10 -70 45 -95" fill="none" stroke="#f59e0b" stroke-width="4" stroke-linecap="round" />
+      <polygon points="45,-105 52,-88 35,-92" fill="#f59e0b" />
+
+      <text x="0" y="65" font-family="'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="12" fill="#94a3b8" text-anchor="middle">Assessment Pathways</text>
+    </g>
+  </g>
+
+  <!-- ================= 7. TOP-RIGHT: SOFT SKILLS & ADAPTABILITY WORKSHOP ================= -->
+  <g id="soft-skills-workshop" transform="translate(1500, 180)">
+    <!-- Interconnected Isometric Blue and Gold Modular Cubes -->
+    <!-- Cube 1 (Gold/Amber) -->
+    <g transform="translate(-60, 40)">
+      <polygon points="0,0 25,-14 50,0 25,14" fill="#fde047" />
+      <polygon points="0,0 25,14 25,45 0,31" fill="#d97706" />
+      <polygon points="50,0 25,14 25,45 50,31" fill="#b45309" />
+      <circle cx="25" cy="-2" r="6" fill="#ffffff" />
+    </g>
+
+    <!-- Cube 2 (Deep Blue) -->
+    <g transform="translate(30, 20)">
+      <polygon points="0,0 25,-14 50,0 25,14" fill="#38bdf8" />
+      <polygon points="0,0 25,14 25,45 0,31" fill="#0284c7" />
+      <polygon points="50,0 25,14 25,45 50,31" fill="#0369a1" />
+      <circle cx="25" cy="-2" r="6" fill="#ffffff" />
+    </g>
+
+    <!-- Cube 3 (Gold) -->
+    <g transform="translate(90, 80)">
+      <polygon points="0,0 25,-14 50,0 25,14" fill="#fde047" />
+      <polygon points="0,0 25,14 25,45 0,31" fill="#d97706" />
+      <polygon points="50,0 25,14 25,45 50,31" fill="#b45309" />
+      <circle cx="25" cy="-2" r="6" fill="#ffffff" />
+    </g>
+
+    <!-- Cube 4 (Tech Blue) -->
+    <g transform="translate(10, 110)">
+      <polygon points="0,0 25,-14 50,0 25,14" fill="#38bdf8" />
+      <polygon points="0,0 25,14 25,45 0,31" fill="#0284c7" />
+      <polygon points="50,0 25,14 25,45 50,31" fill="#0369a1" />
+    </g>
+
+    <!-- Yellow Cable Connectors -->
+    <g stroke="#f59e0b" stroke-width="2.5" fill="none">
+      <line x1="-35" y1="54" x2="55" y2="34" />
+      <line x1="55" y1="34" x2="115" y2="94" />
+      <line x1="115" y1="94" x2="35" y2="124" />
+      <line x1="35" y1="124" x2="-35" y2="54" />
+    </g>
+
+    <!-- Callout Tags with Lead Lines -->
+    <!-- Tag 1: Emotional Intelligence -->
+    <g transform="translate(180, 50)">
+      <line x1="-60" y1="0" x2="-20" y2="0" stroke="#f59e0b" stroke-width="2" />
+      <circle cx="-60" cy="0" r="4" fill="#f59e0b" />
+      <circle cx="-15" cy="0" r="6" fill="#f59e0b" />
+      <text x="0" y="5" font-family="'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="12" fill="#ffffff">Emotional Intelligence</text>
+    </g>
+
+    <!-- Tag 2: Teamwork -->
+    <g transform="translate(180, 85)">
+      <line x1="-60" y1="0" x2="-20" y2="0" stroke="#f59e0b" stroke-width="2" />
+      <circle cx="-60" cy="0" r="4" fill="#f59e0b" />
+      <circle cx="-15" cy="0" r="6" fill="#f59e0b" />
+      <text x="0" y="5" font-family="'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="12" fill="#ffffff">Teamwork</text>
+    </g>
+
+    <!-- Tag 3: Teamwork -->
+    <g transform="translate(180, 120)">
+      <line x1="-60" y1="0" x2="-20" y2="0" stroke="#f59e0b" stroke-width="2" />
+      <circle cx="-60" cy="0" r="4" fill="#f59e0b" />
+      <circle cx="-15" cy="0" r="6" fill="#f59e0b" />
+      <text x="0" y="5" font-family="'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="12" fill="#ffffff">Teamwork</text>
+    </g>
+
+    <!-- Tag 4: Emotional Intelligence -->
+    <g transform="translate(180, 155)">
+      <line x1="-60" y1="0" x2="-20" y2="0" stroke="#f59e0b" stroke-width="2" />
+      <circle cx="-60" cy="0" r="4" fill="#f59e0b" />
+      <circle cx="-15" cy="0" r="6" fill="#f59e0b" />
+      <text x="0" y="5" font-family="'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="12" fill="#ffffff">Emotional Intelligence</text>
+    </g>
+
+    <!-- Left Tag: Targeted CV Development -->
+    <g transform="translate(-160, 20)">
+      <text x="0" y="0" font-family="'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="12" fill="#ffffff">Targeted CV</text>
+      <text x="0" y="14" font-family="'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="12" fill="#ffffff">Development</text>
+      <text x="0" y="32" font-family="'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="12" fill="#ffffff">Emotional</text>
+      <text x="0" y="46" font-family="'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="12" fill="#ffffff">Intelligence</text>
+    </g>
+
+    <!-- Top Floating Header Badge -->
+    <g transform="translate(40, -60)">
+      <rect x="-115" y="0" width="230" height="50" rx="8" fill="#0f172a" stroke="#334155" stroke-width="2" />
+      <text x="0" y="21" font-family="'Segoe UI', Roboto, sans-serif" font-weight="800" font-size="14" fill="#ffffff" text-anchor="middle">Soft Skills &amp;</text>
+      <text x="0" y="40" font-family="'Segoe UI', Roboto, sans-serif" font-weight="800" font-size="14" fill="#ffffff" text-anchor="middle">Adaptability Workshop</text>
+    </g>
+  </g>
+
+  <!-- ================= 8. CENTER-RIGHT: RESUME & PORTFOLIO OPTIMIZATION CENTER ================= -->
+  <g id="resume-optimization-center" transform="translate(1330, 430)">
+    <!-- Sandstone Multi-Tier Plinth Base -->
+    <polygon points="-160,40 10,-35 180,35 10,110" fill="#ded5c4" stroke="#94a3b8" stroke-width="3" />
+    <polygon points="-150,30 10,-40 170,25 10,95" fill="#eae3d5" />
+
+    <!-- Neoclassical Colonnade Temple -->
+    <!-- Classical White/Cream Columns -->
+    <g fill="#f8fafc" stroke="#94a3b8" stroke-width="2">
+      <!-- Column 1 -->
+      <rect x="-135" y="-55" width="16" height="85" rx="3" />
+      <polygon points="-140,-55 -114,-55 -119,-45 -135,-45" fill="#cbd5e1" />
+      <!-- Column 2 -->
+      <rect x="-95" y="-70" width="16" height="85" rx="3" />
+      <polygon points="-100,-70 -74,-70 -79,-60 -95,-60" fill="#cbd5e1" />
+      <!-- Column 3 -->
+      <rect x="-55" y="-85" width="16" height="85" rx="3" />
+      <!-- Column 4 -->
+      <rect x="-15" y="-100" width="16" height="85" rx="3" />
+      <!-- Column 5 -->
+      <rect x="25" y="-85" width="16" height="85" rx="3" />
+      <!-- Column 6 -->
+      <rect x="65" y="-70" width="16" height="85" rx="3" />
+      <!-- Column 7 -->
+      <rect x="105" y="-55" width="16" height="85" rx="3" />
+      <!-- Column 8 -->
+      <rect x="145" y="-40" width="16" height="85" rx="3" />
+    </g>
+
+    <!-- Stately Triangular Pediment Roof with Blue Inset Medallion -->
+    <polygon points="-150,-55 10,-130 170,-40" fill="#ded5c4" stroke="#94a3b8" stroke-width="3" />
+    <polygon points="-135,-60 10,-120 155,-47" fill="#1e3a8a" stroke="#38bdf8" stroke-width="2.5" />
+
+    <!-- Golden Fountain Pen / Quill in Medallion on Pediment -->
+    <g transform="translate(10, -75) scale(0.95)">
+      <circle cx="0" cy="0" r="26" fill="#0284c7" stroke="#ffffff" stroke-width="2" />
+      <!-- Golden Nib & Fountain Pen Body -->
+      <path d="M 0 -18 L 9 5 L 0 20 L -9 5 Z" fill="#fde047" stroke="#b45309" stroke-width="1.5" />
+      <line x1="0" y1="-18" x2="0" y2="10" stroke="#78350f" stroke-width="1.5" />
+      <circle cx="0" cy="4" r="2" fill="#78350f" />
+    </g>
+
+    <!-- Candidate Resume Portfolios Framed on Columns -->
+    <g transform="translate(60, -35)">
+      <rect x="0" y="0" width="30" height="42" rx="2" fill="#ffffff" stroke="#0284c7" stroke-width="2" />
+      <circle cx="15" cy="12" r="5" fill="#3b82f6" />
+      <line x1="6" y1="24" x2="24" y2="24" stroke="#94a3b8" stroke-width="2" />
+      <line x1="6" y1="30" x2="20" y2="30" stroke="#94a3b8" stroke-width="2" />
+      <line x1="6" y1="36" x2="24" y2="36" stroke="#94a3b8" stroke-width="2" />
+    </g>
+
+    <g transform="translate(110, -15)">
+      <rect x="0" y="0" width="30" height="42" rx="2" fill="#ffffff" stroke="#0284c7" stroke-width="2" />
+      <circle cx="15" cy="12" r="5" fill="#3b82f6" />
+      <line x1="6" y1="24" x2="24" y2="24" stroke="#94a3b8" stroke-width="2" />
+      <line x1="6" y1="30" x2="20" y2="30" stroke="#94a3b8" stroke-width="2" />
+      <line x1="6" y1="36" x2="24" y2="36" stroke="#94a3b8" stroke-width="2" />
+    </g>
+
+    <!-- Ground Level Inset Label -->
+    <text x="80" y="90" font-family="'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="12" fill="#0f172a">Resume &amp; Portfolio Optimization Center</text>
+
+    <!-- Top Floating Header Badge -->
+    <g transform="translate(10, -180)">
+      <rect x="-105" y="0" width="210" height="50" rx="8" fill="#0f172a" stroke="#334155" stroke-width="2" />
+      <text x="0" y="21" font-family="'Segoe UI', Roboto, sans-serif" font-weight="800" font-size="14" fill="#ffffff" text-anchor="middle">Resume &amp; Portfolio</text>
+      <text x="0" y="40" font-family="'Segoe UI', Roboto, sans-serif" font-weight="800" font-size="14" fill="#ffffff" text-anchor="middle">Optimization Center</text>
+    </g>
+  </g>
+
+  <!-- ================= 9. BOTTOM-RIGHT: MOCK INTERVIEW & COMMUNICATION PAVILION ================= -->
+  <g id="mock-interview-dome" transform="translate(1620, 560)">
+    <!-- Terraced Sandstone Steps Leading Up -->
+    <polygon points="-120,95 -40,55 80,105 0,145" fill="#cbd5e1" stroke="#94a3b8" stroke-width="2" />
+    <polygon points="-100,105 -30,70 70,115 0,150" fill="#ded5c4" />
+
+    <!-- Circular Plinth Platform -->
+    <ellipse cx="0" cy="80" rx="190" ry="70" fill="#1e293b" stroke="#38bdf8" stroke-width="4" />
+    <ellipse cx="0" cy="75" rx="165" ry="60" fill="#0f172a" stroke="#fde047" stroke-width="2" />
+
+    <!-- TRANSPARENT GEODESIC HOLOGRAPHIC GLASS DOME -->
+    <path d="M -160 70 Q -160 -110 0 -110 Q 160 -110 160 70 Z" fill="url(#dome-glass-glow)" stroke="#67e8f9" stroke-width="4" />
+
+    <!-- Geodesic Vertical & Horizontal Curved Struts -->
+    <g stroke="#ffffff" stroke-width="2" fill="none" opacity="0.75">
+      <!-- Horizontal Latitude Arcs -->
+      <path d="M -150 40 Q 0 -10 150 40" />
+      <path d="M -130 0 Q 0 -50 130 0" />
+      <path d="M -90 -50 Q 0 -85 90 -50" />
+
+      <!-- Vertical Rib Arcs -->
+      <path d="M -100 65 Q -70 -30 0 -110" />
+      <path d="M -40 70 Q -25 -20 0 -110" />
+      <path d="M 40 70 Q 25 -20 0 -110" />
+      <path d="M 100 65 Q 70 -30 0 -110" />
+    </g>
+
+    <!-- Inside Dome: Soundwaves / Audio Waveforms -->
+    <!-- Left Soundwave Bars -->
+    <g stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round">
+      <line x1="-120" y1="20" x2="-120" y2="40" />
+      <line x1="-110" y1="10" x2="-110" y2="50" />
+      <line x1="-100" y1="2" x2="-100" y2="58" />
+      <line x1="-90" y1="15" x2="-90" y2="45" />
+      <line x1="-80" y1="22" x2="-80" y2="38" />
+    </g>
+
+    <!-- Right Soundwave Bars -->
+    <g stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round">
+      <line x1="80" y1="22" x2="80" y2="38" />
+      <line x1="90" y1="15" x2="90" y2="45" />
+      <line x1="100" y1="2" x2="100" y2="58" />
+      <line x1="110" y1="10" x2="110" y2="50" />
+      <line x1="120" y1="20" x2="120" y2="40" />
+    </g>
+
+    <!-- Holographic Digital Speech Frequency Metrics -->
+    <g font-family="'Courier New', monospace" font-weight="700" font-size="9" fill="#38bdf8" opacity="0.8">
+      <text x="75" y="-10">20 169</text>
+      <text x="75" y="0">20 159</text>
+      <text x="75" y="10">20 129</text>
+      <text x="75" y="20">20 119</text>
+    </g>
+
+    <!-- Central Glowing Gold Hologram Microphone -->
+    <g transform="translate(0, 15) scale(1.1)">
+      <!-- Radiating Audio Wave Circles -->
+      <ellipse cx="0" cy="-20" rx="35" ry="15" fill="none" stroke="#67e8f9" stroke-width="2" stroke-dasharray="6 4" />
+      <!-- Microphone Capsule -->
+      <rect x="-14" y="-45" width="28" height="40" rx="14" fill="url(#mic-gold)" stroke="#ffffff" stroke-width="2" />
+      <!-- Microphone U-Mount Cradle -->
+      <path d="M -22 -20 Q -22 10 0 10 Q 22 10 22 -20" fill="none" stroke="#ffffff" stroke-width="3" />
+      <!-- Mic Stand Base -->
+      <line x1="0" y1="10" x2="0" y2="28" stroke="#ffffff" stroke-width="4" />
+      <line x1="-15" y1="28" x2="15" y2="28" stroke="#ffffff" stroke-width="3" />
+    </g>
+
+    <!-- Callout Badges -->
+    <!-- Top Right: AI Interview Simulations -->
+    <g transform="translate(120, -110)">
+      <line x1="-40" y1="30" x2="0" y2="0" stroke="#38bdf8" stroke-width="2" />
+      <circle cx="-40" cy="30" r="4" fill="#38bdf8" />
+      <rect x="0" y="-12" width="130" height="32" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1.5" />
+      <text x="65" y="1" font-family="'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="11" fill="#ffffff" text-anchor="middle">AI Interview</text>
+      <text x="65" y="14" font-family="'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="11" fill="#38bdf8" text-anchor="middle">Simulations</text>
+    </g>
+
+    <!-- Bottom Right: Private Interview Simulations -->
+    <g transform="translate(150, 90)">
+      <line x1="-60" y1="-20" x2="0" y2="0" stroke="#38bdf8" stroke-width="2" />
+      <circle cx="-60" cy="-20" r="4" fill="#38bdf8" />
+      <rect x="0" y="-12" width="140" height="44" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1.5" />
+      <text x="70" y="5" font-family="'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="12" fill="#ffffff" text-anchor="middle">Private,</text>
+      <text x="70" y="21" font-family="'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="12" fill="#ffffff" text-anchor="middle">Interview</text>
+      <text x="70" y="36" font-family="'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="12" fill="#38bdf8" text-anchor="middle">Simulations</text>
+    </g>
+
+    <!-- Top Floating Header Badge -->
+    <g transform="translate(0, -170)">
+      <rect x="-125" y="0" width="250" height="50" rx="8" fill="#0f172a" stroke="#334155" stroke-width="2" />
+      <text x="0" y="21" font-family="'Segoe UI', Roboto, sans-serif" font-weight="800" font-size="14" fill="#ffffff" text-anchor="middle">Mock Interview &amp;</text>
+      <text x="0" y="40" font-family="'Segoe UI', Roboto, sans-serif" font-weight="800" font-size="14" fill="#ffffff" text-anchor="middle">Communication Pavilion</text>
+    </g>
+  </g>
+
+  <!-- ================= 10. MID-BOTTOM RIGHT: PLACEMENT ANALYTICS & ROI DASHBOARD ================= -->
+  <g id="roi-dashboard-monitor" transform="translate(1260, 690)">
+    <!-- Stand & Base -->
+    <polygon points="-40,110 40,110 20,80 -20,80" fill="#334155" stroke="#1e293b" stroke-width="2" />
+    <rect x="-8" y="50" width="16" height="35" fill="#64748b" />
+
+    <!-- Big Wide Monitor Bezel -->
+    <rect x="-150" y="-70" width="300" height="150" rx="8" fill="#0f172a" stroke="#94a3b8" stroke-width="4" />
+    <rect x="-142" y="-62" width="284" height="134" rx="4" fill="#020617" />
+
+    <!-- Monitor Header -->
+    <rect x="-142" y="-62" width="284" height="18" fill="#1e293b" />
+    <text x="-132" y="-49" font-family="'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="8" fill="#94a3b8">Placement Statistics</text>
+    <text x="-20" y="-49" font-family="'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="8" fill="#94a3b8">Placement Benchmarks</text>
+    <text x="90" y="-49" font-family="'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="8" fill="#94a3b8">ROI Acceleration</text>
+
+    <!-- Left KPI: Circular Donut Gauge with 26% -->
+    <g transform="translate(-95, -5)">
+      <circle cx="0" cy="0" r="26" fill="#0f172a" stroke="#1e293b" stroke-width="7" />
+      <path d="M 0 -26 A 26 26 0 0 1 26 0" fill="none" stroke="#38bdf8" stroke-width="7" />
+      <text x="0" y="4" font-family="'Segoe UI', Roboto, sans-serif" font-weight="900" font-size="12" fill="#ffffff" text-anchor="middle">26%</text>
+      <text x="0" y="14" font-family="'Segoe UI', Roboto, sans-serif" font-weight="600" font-size="6" fill="#94a3b8" text-anchor="middle">GROWTH</text>
+    </g>
+
+    <!-- Center Chart: Ascending Bar Chart & Line Trend -->
+    <g transform="translate(10, 0)">
+      <rect x="-35" y="-30" width="85" height="50" fill="#0f172a" stroke="#1e293b" stroke-width="1" />
+      <!-- Vertical Bars -->
+      <g fill="#0284c7" opacity="0.8">
+        <rect x="-30" y="-5" width="6" height="20" />
+        <rect x="-20" y="-12" width="6" height="27" />
+        <rect x="-10" y="-18" width="6" height="33" />
+        <rect x="0" y="-10" width="6" height="25" />
+        <rect x="10" y="-22" width="6" height="37" />
+        <rect x="20" y="-26" width="6" height="41" />
+        <rect x="30" y="-28" width="6" height="43" fill="#38bdf8" />
+        <rect x="40" y="-25" width="6" height="40" fill="#38bdf8" />
+      </g>
+      <!-- Line overlay -->
+      <path d="M -30 -2 L -20 -10 L -10 -15 L 0 -8 L 10 -20 L 20 -24 L 30 -26 L 40 -23" fill="none" stroke="#fde047" stroke-width="1.5" />
+    </g>
+
+    <!-- Right Metric Tiles -->
+    <g transform="translate(90, -10)">
+      <rect x="0" y="-15" width="45" height="8" rx="2" fill="#0284c7" />
+      <rect x="0" y="-3" width="45" height="8" rx="2" fill="#10b981" />
+      <rect x="0" y="9" width="45" height="8" rx="2" fill="#f59e0b" />
+      <rect x="0" y="21" width="45" height="8" rx="2" fill="#38bdf8" />
+    </g>
+
+    <!-- Bottom Secondary Metrics -->
+    <g transform="translate(0, 42)">
+      <circle cx="-95" cy="5" r="14" fill="#0f172a" stroke="#10b981" stroke-width="3" />
+      <text x="-95" y="8" font-family="'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="8" fill="#ffffff" text-anchor="middle">0%</text>
+      <rect x="-60" y="0" width="80" height="12" rx="2" fill="#1e293b" />
+      <rect x="35" y="0" width="90" height="12" rx="2" fill="#1e293b" />
+    </g>
+
+    <!-- Top Floating Header Badge -->
+    <g transform="translate(0, -105)">
+      <rect x="-115" y="0" width="230" height="36" rx="6" fill="#0f172a" stroke="#334155" stroke-width="2" />
+      <text x="0" y="23" font-family="'Segoe UI', Roboto, sans-serif" font-weight="800" font-size="13" fill="#ffffff" text-anchor="middle">Placement Analytics &amp; ROI Dashboard</text>
+    </g>
+  </g>
+
+  <!-- ================= 11. FOREGROUND BALUSTRADE & RELIEF ENGRAVED TABLET ================= -->
+  <!-- Sandstone Terrace Coping Edge -->
+  <polygon points="0,870 1920,870 1920,1080 0,1080" fill="url(#campus-floor)" />
+  <rect x="0" y="865" width="1920" height="20" fill="#ded5c4" stroke="#94a3b8" stroke-width="3" />
+
+  <!-- CENTER RELIEF ENGRAVED BRONZE / STONE TABLET -->
+  <!-- "JOBS & PLACEMENT READINESS" -->
+  <g id="jobs-placement-tablet" transform="translate(960, 930)">
+    <!-- Outer Inset Bevel Gold Frame -->
+    <polygon points="-420,-65 420,-65 380,65 -380,65" fill="url(#gold-metal-frame)" stroke="#451a03" stroke-width="6" />
+    <polygon points="-405,-55 405,-55 370,55 -370,55" fill="url(#tablet-inner)" stroke="#78350f" stroke-width="3" />
+
+    <!-- 3D CARVED RELIEF TEXT -->
+    <!-- Line 1: JOBS & PLACEMENT -->
+    <text x="0" y="-12" font-family="'Cinzel', 'Times New Roman', 'Georgia', serif" font-weight="900" font-size="44" fill="#291a0e" text-anchor="middle" letter-spacing="4">JOBS &amp; PLACEMENT</text>
+    <text x="0" y="-14" font-family="'Cinzel', 'Times New Roman', 'Georgia', serif" font-weight="900" font-size="44" fill="#54381b" text-anchor="middle" letter-spacing="4">JOBS &amp; PLACEMENT</text>
+    <text x="0" y="-16" font-family="'Cinzel', 'Times New Roman', 'Georgia', serif" font-weight="900" font-size="44" fill="#181109" text-anchor="middle" letter-spacing="4">JOBS &amp; PLACEMENT</text>
+
+    <!-- Line 2: READINESS -->
+    <text x="0" y="26" font-family="'Cinzel', 'Times New Roman', 'Georgia', serif" font-weight="900" font-size="42" fill="#291a0e" text-anchor="middle" letter-spacing="6">READINESS</text>
+    <text x="0" y="24" font-family="'Cinzel', 'Times New Roman', 'Georgia', serif" font-weight="900" font-size="42" fill="#54381b" text-anchor="middle" letter-spacing="6">READINESS</text>
+    <text x="0" y="22" font-family="'Cinzel', 'Times New Roman', 'Georgia', serif" font-weight="900" font-size="42" fill="#181109" text-anchor="middle" letter-spacing="6">READINESS</text>
+
+    <!-- Line 3: ACCELERATE YOUR CAREER JOURNEY -->
+    <text x="0" y="48" font-family="'Segoe UI', Roboto, sans-serif" font-weight="800" font-size="16" fill="#78350f" text-anchor="middle" letter-spacing="3">ACCELERATE YOUR CAREER JOURNEY</text>
+  </g>
+
+  <!-- ================= 12. FOREGROUND LEFT: DYNAMIC DIGITAL TABLET & SMARTPHONE ================= -->
+  <g id="dynamic-digital-tablet" transform="translate(190, 890)">
+    <!-- Tilted Modern Dark Tablet -->
+    <g transform="rotate(-12)">
+      <!-- Bezel -->
+      <rect x="0" y="0" width="180" height="135" rx="10" fill="#0f172a" stroke="#94a3b8" stroke-width="4" />
+      <!-- Glass Screen -->
+      <rect x="8" y="8" width="164" height="119" rx="6" fill="#020617" />
+
+      <!-- Screen Header with Status -->
+      <text x="18" y="24" font-family="'Segoe UI', Roboto, sans-serif" font-weight="800" font-size="9" fill="#38bdf8">CANDIDATE PROFILE</text>
+      <circle cx="152" cy="20" r="4" fill="#10b981" />
+
+      <!-- Glowing Green / Cyan Radar Competency Spider Web Chart -->
+      <g transform="translate(90, 68)" stroke="#38bdf8" stroke-width="1.2" fill="none" opacity="0.9">
+        <polygon points="0,-35 30,-12 18,28 -18,28 -30,-12" />
+        <polygon points="0,-22 18,-8 11,18 -11,18 -18,-8" />
+        <polygon points="0,-10 9,-4 6,9 -6,9 -9,-4" />
+        <!-- Filled Performance Polygon -->
+        <polygon points="0,-32 26,-8 15,22 -12,24 -24,-10" fill="#10b981" fill-opacity="0.45" stroke="#4ade80" stroke-width="2" />
+      </g>
+
+      <!-- Bottom Metric Pill -->
+      <rect x="75" y="105" width="30" height="14" rx="7" fill="#10b981" />
+      <text x="90" y="115" font-family="'Segoe UI', Roboto, sans-serif" font-weight="900" font-size="8" fill="#ffffff" text-anchor="middle">97%</text>
+    </g>
+
+    <!-- Standing Modern Smartphone next to Tablet -->
+    <g transform="translate(180, 10) rotate(5)">
+      <rect x="0" y="0" width="65" height="115" rx="8" fill="#0f172a" stroke="#cbd5e1" stroke-width="3" />
+      <rect x="4" y="6" width="57" height="103" rx="4" fill="#020617" />
+      <!-- Miniature Radar Chart on Phone -->
+      <g transform="translate(32, 50)" stroke="#38bdf8" stroke-width="1" fill="none">
+        <polygon points="0,-20 18,-6 10,16 -10,16 -18,-6" />
+        <polygon points="0,-18 15,-4 8,12 -7,14 -14,-5" fill="#10b981" fill-opacity="0.5" stroke="#4ade80" stroke-width="1.5" />
+      </g>
+    </g>
+
+    <!-- Floating Label below Tablet -->
+    <g transform="translate(110, 150)">
+      <text x="0" y="0" font-family="'Segoe UI', Roboto, sans-serif" font-weight="800" font-size="13" fill="#ffffff" text-anchor="middle" letter-spacing="1">DYNAMIC</text>
+      <text x="0" y="16" font-family="'Segoe UI', Roboto, sans-serif" font-weight="800" font-size="13" fill="#ffffff" text-anchor="middle" letter-spacing="1">DIGITAL TABLET</text>
+    </g>
+  </g>
+
+  <!-- ================= 13. FOREGROUND RIGHT: HIGH-VALUE CERTIFICATIONS & COMPASS ================= -->
+  <g id="certifications-and-compass" transform="translate(1600, 890)">
+    <!-- STACK OF OFFICIAL DIPLOMA CERTIFICATES -->
+    <g transform="translate(-160, 0)">
+      <!-- Certificate 1 (Bottom Back) -->
+      <polygon points="10,-10 170,-20 190,90 30,100" fill="#eae3d5" stroke="#94a3b8" stroke-width="2" />
+      <!-- Certificate 2 (Top Front) -->
+      <polygon points="0,0 160,-10 175,100 15,110" fill="#fbfaf7" stroke="#b45309" stroke-width="3" />
+
+      <!-- Gold Guilloche Border on Certificate -->
+      <polygon points="8,8 152,0 165,92 21,100" fill="none" stroke="#d97706" stroke-width="1.5" stroke-dasharray="4 2" />
+
+      <!-- Certificate Header -->
+      <text x="90" y="24" font-family="'Cinzel', 'Times New Roman', serif" font-weight="900" font-size="10" fill="#78350f" text-anchor="middle" letter-spacing="1">INDUSTRY</text>
+      <text x="90" y="36" font-family="'Cinzel', 'Times New Roman', serif" font-weight="900" font-size="11" fill="#78350f" text-anchor="middle" letter-spacing="1">CERTIFICATIONS</text>
+
+      <!-- Signature Lines -->
+      <line x1="30" y1="80" x2="65" y2="80" stroke="#94a3b8" stroke-width="1.5" />
+      <line x1="115" y1="75" x2="150" y2="75" stroke="#94a3b8" stroke-width="1.5" />
+
+      <!-- Embossed Gold Wax Seal -->
+      <circle cx="85" cy="80" r="14" fill="#ca8a04" stroke="#fde047" stroke-width="2" />
+      <circle cx="85" cy="80" r="10" fill="#b45309" />
+      <text x="85" y="83" font-family="'Cinzel', serif" font-weight="900" font-size="8" fill="#fef08a" text-anchor="middle">★</text>
+
+      <!-- Label below Certifications -->
+      <text x="85" y="130" font-family="'Segoe UI', Roboto, sans-serif" font-weight="800" font-size="13" fill="#ffffff" text-anchor="middle" letter-spacing="1">HIGH-VALUE</text>
+      <text x="85" y="146" font-family="'Segoe UI', Roboto, sans-serif" font-weight="800" font-size="13" fill="#ffffff" text-anchor="middle" letter-spacing="1">CERTIFICATIONS</text>
+    </g>
+
+    <!-- POLISHED BRASS NAUTICAL COMPASS ("PREMIUM GUIDANCE TOOL") -->
+    <g transform="translate(120, 45)">
+      <!-- Outer Beveled Brass Casing -->
+      <circle cx="0" cy="0" r="48" fill="#ca8a04" stroke="#78350f" stroke-width="4" />
+      <circle cx="0" cy="0" r="44" fill="#fef08a" stroke="#b45309" stroke-width="1.5" />
+      <circle cx="0" cy="0" r="40" fill="#0f172a" stroke="#0284c7" stroke-width="2.5" />
+
+      <!-- 16-Point Compass Rose -->
+      <!-- Main North-South-East-West Star -->
+      <polygon points="0,-36 6,-8 0,0 -6,-8" fill="#38bdf8" />
+      <polygon points="0,-36 0,0 6,-8" fill="#ffffff" />
+
+      <polygon points="0,36 6,8 0,0 -6,8" fill="#0284c7" />
+      <polygon points="0,36 0,0 -6,8" fill="#ffffff" />
+
+      <polygon points="36,0 8,6 0,0 8,-6" fill="#f59e0b" />
+      <polygon points="36,0 0,0 8,-6" fill="#ffffff" />
+
+      <polygon points="-36,0 -8,6 0,0 -8,-6" fill="#d97706" />
+      <polygon points="-36,0 0,0 -8,-6" fill="#ffffff" />
+
+      <!-- Diagonal Points -->
+      <polygon points="24,-24 4,-6 0,0 6,-4" fill="#38bdf8" />
+      <polygon points="-24,-24 -4,-6 0,0 -6,-4" fill="#38bdf8" />
+      <polygon points="24,24 4,6 0,0 6,4" fill="#f59e0b" />
+      <polygon points="-24,24 -4,6 0,0 -6,4" fill="#f59e0b" />
+
+      <!-- Center Brass Pivot -->
+      <circle cx="0" cy="0" r="6" fill="#fde047" stroke="#78350f" stroke-width="1.5" />
+
+      <!-- Compass Degree Markers -->
+      <circle cx="0" cy="0" r="36" fill="none" stroke="#38bdf8" stroke-width="1" stroke-dasharray="2 4" />
+
+      <!-- Label below Compass -->
+      <text x="0" y="85" font-family="'Segoe UI', Roboto, sans-serif" font-weight="800" font-size="13" fill="#ffffff" text-anchor="middle" letter-spacing="1">PREMIUM</text>
+      <text x="0" y="101" font-family="'Segoe UI', Roboto, sans-serif" font-weight="800" font-size="13" fill="#ffffff" text-anchor="middle" letter-spacing="1">GUIDANCE TOOL</text>
+    </g>
+  </g>
+</svg>"""
+
+    svg_path = "public/images/jobs-placement-readiness.svg"
+    os.makedirs("public/images", exist_ok=True)
+    with open(svg_path, "w", encoding="utf-8") as f:
+        f.write(svg_content)
+    print(f"Generated {svg_path}")
+
+if __name__ == "__main__":
+    generate_svg()

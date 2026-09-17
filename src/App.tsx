@@ -41,7 +41,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#0b1120] text-slate-100 selection:bg-teal-500 selection:text-white font-['Plus_Jakarta_Sans',sans-serif]">
+    <div className="min-h-screen flex flex-col bg-[#0D0D0D] text-[#f2f2f2] selection:bg-[#E5FE40] selection:text-[#0D0D0D] font-['Plus_Jakarta_Sans',sans-serif]">
       {/* Top Header with Unified Navigation */}
       <Header
         activePage={activePage}

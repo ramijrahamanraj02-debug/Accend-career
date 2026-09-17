@@ -219,12 +219,11 @@ def render_compass_hero():
 # VIDEO 2: PHYSICAL STEEL MONOLITH FLIP & REAL MENTORSHIP SESSION
 # ==============================================================================
 def render_mentor_monolith():
-    mp4_path = os.path.join(OUTPUT_DIR, "ascend-mentor-session.mp4")
-    wav_path = "/tmp/mentor_audio.wav"
-    duration = 9.0
-    num_frames = int(FPS * duration)
-    
-    print(f"[2/2] Rendering Video 2: {mp4_path} ({num_frames} frames)...")
+    print("[2/2] Rendering Real Human Mentorship Session Video...")
+    import subprocess
+    subprocess.run(["python3", "scripts/render_real_mentor_video.py"], check=True)
+    return
+
 
     # Generate Dialogue Audio Track
     def audio_func(t):

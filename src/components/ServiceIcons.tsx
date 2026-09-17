@@ -7,6 +7,8 @@ import {
   GraduationCap,
   School,
   Building2,
+  Code2,
+  Palette,
   LucideProps
 } from 'lucide-react';
 import { ServiceId } from '../types';
@@ -17,6 +19,10 @@ interface ServiceIconProps extends LucideProps {
 
 export const ServiceIcon: React.FC<ServiceIconProps> = ({ id, ...props }) => {
   switch (id) {
+    case 'web-services':
+      return <Code2 {...props} />;
+    case 'graphic-design':
+      return <Palette {...props} />;
     case 'career-guidance':
       return <Compass {...props} />;
     case 'skill-development':

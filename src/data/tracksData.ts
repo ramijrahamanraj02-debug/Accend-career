@@ -169,7 +169,7 @@ export const CAREER_TRACKS: CareerTrackItem[] = [
     category: 'Corporate Connect',
     serviceId: 'jobs-placement',
     iconType: 'placement',
-    shortDesc: 'Direct recruitment pipelines to 50+ hiring partners, ATS resume overhaul, and 1-on-1 technical mock interviews.',
+    shortDesc: 'Direct recruitment pipelines to 500+ hiring partner companies, ATS resume overhaul, and 1-on-1 technical mock interviews.',
     details: 'Ascend Career actively bridges candidates and top employers with high-touch interview grooming, portfolio reviews, and direct corporate HR referrals.',
     deliverables: [
       'ATS-Compliant Resume Engineering',

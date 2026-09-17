@@ -47,7 +47,7 @@ export const LearningExperienceReviews: React.FC<LearningExperienceReviewsProps>
       } else if (selectedFilter === 'sap') {
         const mentionsSap =
           item.reviewText.toLowerCase().includes('sap') ||
-          item.courseTag.toLowerCase().includes('sap');
+          (item.courseTag && item.courseTag.toLowerCase().includes('sap'));
         if (!mentionsSap) return false;
       } else if (selectedFilter === 'career') {
         const isCareer =
@@ -62,7 +62,7 @@ export const LearningExperienceReviews: React.FC<LearningExperienceReviewsProps>
         const matchesQuery =
           item.author.toLowerCase().includes(q) ||
           item.reviewText.toLowerCase().includes(q) ||
-          item.courseTag.toLowerCase().includes(q) ||
+          (item.courseTag && item.courseTag.toLowerCase().includes(q)) ||
           (item.featuredMention && item.featuredMention.toLowerCase().includes(q));
         if (!matchesQuery) return false;
       }
@@ -77,11 +77,6 @@ export const LearningExperienceReviews: React.FC<LearningExperienceReviewsProps>
     <div className="mt-16 pt-16 border-t border-slate-800/80">
       {/* Header & Trust Badge */}
       <div className="text-center max-w-3xl mx-auto mb-10">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-500/10 border border-teal-500/30 text-teal-300 text-xs font-mono font-bold tracking-widest uppercase mb-3 shadow-[0_0_20px_rgba(20,184,166,0.15)]">
-          <MessageSquareQuote className="w-3.5 h-3.5 text-teal-400" />
-          <span>AUTHENTIC LEARNING EXPERIENCES</span>
-        </div>
-
         <h3 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
           What Our Students Say on Google Reviews
         </h3>

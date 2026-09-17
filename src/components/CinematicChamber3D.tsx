@@ -105,7 +105,7 @@ const CHAPTERS: Chapter[] = [
       student: 'Thank you.',
       mentorReply: 'We will find the way together.'
     },
-    humanPhoto: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1000&auto=format&fit=crop',
+    humanPhoto: '/images/discover-your-strengths-assessment.jpg',
     humanTag: '1-on-1 Mentorship',
     whatYouGet: [
       'Deep Psychometric & Aptitude Discovery',
@@ -138,13 +138,13 @@ const CHAPTERS: Chapter[] = [
     title: 'Jobs & Placement (HTD)',
     subtitle: 'Hire • Train • Deploy',
     humanHeadline: 'Turn preparation into opportunity.',
-    humanSubtext: "Ready for your next step? From executive resume crafting to technical mock interviews, we connect you directly with 50+ hiring partners who trust our graduates.",
+    humanSubtext: "Ready for your next step? From executive resume crafting to technical mock interviews, we connect you directly with 500+ hiring partner companies who trust our graduates.",
     ctaText: 'Explore Jobs & Placement →',
     ctaAction: 'service',
     serviceId: 'jobs-placement',
     transitionType: 'briefcase',
-    humanPhoto: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1000&auto=format&fit=crop',
-    humanTag: '50+ Hiring Partners',
+    humanPhoto: '/images/jobs-placement-readiness.jpg',
+    humanTag: '500+ Hiring Companies',
     whatYouGet: [
       'Hire-Train-Deploy (HTD) Direct Placement Support',
       'ATS-Optimized Resumes & Real-World Mock Drills',
@@ -162,7 +162,7 @@ const CHAPTERS: Chapter[] = [
     ctaAction: 'service',
     serviceId: 'study-abroad',
     transitionType: 'globe',
-    humanPhoto: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1000&auto=format&fit=crop',
+    humanPhoto: '/images/study-abroad-global-pathways.jpg',
     humanTag: 'Global Admissions',
     whatYouGet: [
       'University Shortlisting & 100% Scholarship Mentorship',
@@ -187,8 +187,8 @@ const CHAPTERS: Chapter[] = [
     ctaAction: 'service',
     serviceId: 'study-in-india',
     transitionType: 'quad',
-    humanPhoto: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=1000&auto=format&fit=crop',
-    humanTag: 'Premier Indian Colleges',
+    humanPhoto: '/images/study-in-india-direct-admissions.jpg',
+    humanTag: 'Direct Admissions & University Hub',
     whatYouGet: [
       'Competitive Exam Strategic Scoring Roadmap',
       'Central & Top Private University Admissions',
@@ -238,7 +238,7 @@ const CHAPTERS: Chapter[] = [
 const MENTORSHIP_DIALOGUE_LINES: DialogueLine[] = [
   { speaker: 'MENTOR', text: 'You have great potential.', start: 0.5, end: 4.2 },
   { speaker: 'STUDENT', text: 'Thank you.', start: 4.4, end: 6.2 },
-  { speaker: 'MENTOR', text: 'We will find the way.', start: 6.4, end: 8.8 }
+  { speaker: 'MENTOR', text: 'We will find the way together.', start: 6.4, end: 9.5 }
 ];
 
 export const CinematicChamber3D: React.FC<CinematicChamber3DProps> = ({
@@ -270,7 +270,7 @@ export const CinematicChamber3D: React.FC<CinematicChamber3DProps> = ({
   const activeAmbientSrc =
     ambientVideoSrc ||
     (activeAmbientPreset === 'chamber'
-      ? '/videos/ascend-3d-ambient-chamber.mp4'
+      ? '/videos/ascend-3d-wall-reveal.mp4'
       : '/videos/ascend-compass-hero.mp4');
 
   const toggleAmbientVideo = onToggleAmbientVideo || (() => setInternalAmbientPlaying((prev) => !prev));
@@ -639,7 +639,7 @@ export const CinematicChamber3D: React.FC<CinematicChamber3DProps> = ({
                   <div className="p-3 rounded-xl bg-slate-900/50 border border-slate-800/80 backdrop-blur-sm">
                     <p className="text-xs font-mono font-bold text-teal-400">02</p>
                     <p className="text-sm font-bold text-white mt-0.5">INDUSTRY TIE-UPS</p>
-                    <p className="text-[11px] text-slate-400 mt-0.5">50+ hiring corporate partners</p>
+                    <p className="text-[11px] text-slate-400 mt-0.5">500+ hiring companies</p>
                   </div>
                   <div className="p-3 rounded-xl bg-slate-900/50 border border-slate-800/80 backdrop-blur-sm">
                     <p className="text-xs font-mono font-bold text-teal-400">03</p>

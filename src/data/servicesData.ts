@@ -250,7 +250,7 @@ export const SERVICES_DATA: ServiceVertical[] = [
     navTitle: 'Jobs & Placement',
     tagline: 'Direct Corporate Connect, ATS Optimization & Placement Guarantee',
     shortDesc: 'Comprehensive job placement assistance, ATS resume engineering, 1-on-1 mock interviews, and direct hiring partner referrals.',
-    fullDesc: 'Ascend Career operates an active corporate recruitment division partnering with 50+ top startups, MNCs, and domestic enterprises. We transform candidates into hireable professionals through rigorous profile grooming, mock technical rounds, and direct hiring pipelines.',
+    fullDesc: 'Ascend Career operates an active corporate recruitment division partnering with 500+ companies including top startups, MNCs, and domestic enterprises. We transform candidates into hireable professionals through rigorous profile grooming, mock technical rounds, and direct hiring pipelines.',
     badge: 'Place • Launch',
     icon3D: '03',
     lucideIcon: 'Briefcase',
@@ -660,6 +660,168 @@ export const SERVICES_DATA: ServiceVertical[] = [
       {
         question: 'Do you offer both virtual and on-premise corporate delivery?',
         answer: 'Yes, we deliver pan-India on-premise bootcamps at your office or offsite venues, as well as live instructor-led virtual training modules.'
+      }
+    ]
+  },
+  {
+    id: 'graphic-design',
+    numericCode: '08',
+    title: 'Graphic Design & Creative Studio',
+    navTitle: 'Graphic Design',
+    tagline: 'Distinctive Brand Identities, Strategic UI/UX & High-Impact Visuals',
+    shortDesc: 'Bespoke branding systems, digital marketing assets, investor pitch decks, UI/UX prototyping, and packaging design that captivates audiences.',
+    fullDesc: 'Our creative graphic design team turns strategic vision into indelible visual experiences. We forge comprehensive brand identity systems, high-converting digital advertising graphics, responsive UI/UX interfaces in Figma, investor-ready presentation decks, and physical print packaging that commands immediate market authority.',
+    badge: 'Brand • UI/UX • Creative',
+    icon3D: '08',
+    lucideIcon: 'Palette',
+    accentColor: 'amber',
+    accentHex: '#f59e0b',
+    targetAudience: ['Emerging Startups', 'Established Corporate Brands', 'Product Teams & Founders', 'Marketing & Growth Agencies'],
+    subServices: [
+      {
+        id: 'gd-1',
+        title: 'Brand Identity & Logo Systems',
+        description: 'Complete visual identity kits, memorable logo marks, distinctive color palettes, and typographic hierarchies that stand out.',
+        badge: 'Brand Core',
+        deliverables: ['Primary & secondary logo vector suites', 'Comprehensive brand guideline manual', 'Color palette & typography specs']
+      },
+      {
+        id: 'gd-2',
+        title: 'UI/UX App & Web Product Design',
+        description: 'Human-centric user experience architectures and pixel-perfect user interfaces designed in Figma with comprehensive design systems.',
+        badge: 'Product UI/UX',
+        deliverables: ['Figma design system & auto-layout components', 'Interactive clickable prototypes', 'Developer handoff documentation']
+      },
+      {
+        id: 'gd-3',
+        title: 'Investor Pitch Decks & Presentations',
+        description: 'Persuasive executive pitch decks tailored for venture capital pitches, client proposals, and board-level presentations.',
+        badge: 'Executive Decks',
+        deliverables: ['Custom 15-20 slide master deck', 'Infographic & financial data visualization', 'Editable PPTX, Keynote & PDF files']
+      },
+      {
+        id: 'gd-4',
+        title: 'Social Media & Performance Ad Creatives',
+        description: 'Scroll-stopping creative campaign assets engineered for Meta, LinkedIn, Google Display, and Instagram advertising.',
+        badge: 'Ad Performance',
+        deliverables: ['Multi-format banner sets (1:1, 9:16, 16:9)', 'A/B testing visual variants', 'Template library for in-house teams']
+      },
+      {
+        id: 'gd-5',
+        title: 'Marketing Collateral & Print Media',
+        description: 'Tangible brand materials including corporate brochures, exhibition booths, stationery, business cards, and sales flyers.',
+        badge: 'Print & Events',
+        deliverables: ['Print-ready CMYK PDFs with crop marks', 'Custom corporate stationery suite', 'Tri-fold brochures & catalog layouts']
+      },
+      {
+        id: 'gd-6',
+        title: 'Packaging & Product Label Design',
+        description: 'Distinctive retail packaging and container label concepts engineered to capture customer attention on store shelves.',
+        badge: 'Packaging',
+        deliverables: ['Dieline vector files & 3D mockups', 'Compliance & ingredient layout styling', 'Vendor-ready print specifications']
+      }
+    ],
+    outcomes: [
+      'Distinctive brand positioning that establishes instant credibility and recognition',
+      'Higher conversion rates across digital advertising, landing pages, and marketing campaigns',
+      'Complete Figma design systems and production-ready brand style guides for your team',
+      'Cohesive visual consistency across all physical and digital customer touchpoints'
+    ],
+    processSteps: [
+      { step: 1, title: 'Brand Discovery & Moodboarding', description: 'Analyze your target market, competitors, and core values to formulate a creative visual direction.' },
+      { step: 2, title: 'Concept Ideation & Vector Sketches', description: 'Explore multiple unique design concepts, typographic pairings, and color harmonies.' },
+      { step: 3, title: 'Refinement & Design System Building', description: 'Refine chosen directions into complete design components, iconography, and asset variations.' },
+      { step: 4, title: 'Production Delivery & Brand Toolkit', description: 'Package vector files (AI, EPS, SVG), editable Figma kits, font licenses, and brand manuals.' }
+    ],
+    faq: [
+      {
+        question: 'What source files will our team receive upon project delivery?',
+        answer: 'You will receive full intellectual property ownership and all production-ready files including vector AI, EPS, SVG, editable Figma files, high-res PNG/JPG, and print-ready PDF formats.'
+      },
+      {
+        question: 'Can you design a complete UI/UX design system for our developers to build?',
+        answer: 'Yes! We create robust Figma design systems utilizing modern tokens, variables, auto-layout components, and detailed developer handoff specs so your engineering team can build with precision.'
+      }
+    ]
+  },
+  {
+    id: 'web-services',
+    numericCode: '09',
+    title: 'Web Services, Development & Maintenance',
+    navTitle: 'Web Services & Maintenance',
+    tagline: 'High-Performance Web Platforms, Custom SaaS & 24/7 Continuous Maintenance',
+    shortDesc: 'End-to-end engineering of responsive websites, enterprise web apps, e-commerce storefronts, and cloud-native solutions with dedicated maintenance SLAs.',
+    fullDesc: 'From high-converting corporate portals and custom web applications to scalable SaaS platforms and headless e-commerce storefronts, our web engineering studio delivers lightning-fast, accessible, and SEO-optimized digital experiences backed by round-the-clock proactive maintenance and monitoring.',
+    badge: 'Web • SaaS • Maintenance',
+    icon3D: '09',
+    lucideIcon: 'Code2',
+    accentColor: 'cyan',
+    accentHex: '#06b6d4',
+    targetAudience: ['Startups & Scale-ups', 'Enterprises & Brands', 'E-Commerce Businesses', 'Educational Institutions & EdTech'],
+    subServices: [
+      {
+        id: 'ws-1',
+        title: 'Custom Web Apps & SaaS Development',
+        description: 'Bespoke web applications built with modern frameworks (React, Next.js, Node.js, TypeScript) tailored to your workflows.',
+        badge: 'Enterprise Stack',
+        deliverables: ['Modular component architecture', 'State management & API integrations', 'Scalable database models']
+      },
+      {
+        id: 'ws-2',
+        title: 'Corporate & High-Converting Websites',
+        description: 'Engaging, mobile-first business websites engineered to tell your story, generate qualified inbound leads, and establish authority.',
+        badge: 'Growth Engine',
+        deliverables: ['Custom bespoke UI design', 'PageSpeed 95+ Core Web Vitals optimization', 'Lead capture & CRM webhooks']
+      },
+      {
+        id: 'ws-3',
+        title: 'E-Commerce & Digital Storefronts',
+        description: 'Robust e-commerce solutions with frictionless checkout experiences, payment gateways, and inventory management.',
+        badge: 'E-Commerce',
+        deliverables: ['Shopify / Custom store setup', 'Stripe / Razorpay multi-currency checkout', 'Automated order tracking system']
+      },
+      {
+        id: 'ws-4',
+        title: 'Headless CMS & Dynamic Portals',
+        description: 'User-friendly content management systems empowering non-technical team members to manage content effortlessly.',
+        badge: 'CMS Solutions',
+        deliverables: ['Headless CMS architecture (Sanity / Strapi)', 'Intuitive editor dashboard', 'Role-based publishing workflows']
+      },
+      {
+        id: 'ws-5',
+        title: 'API Integration & Cloud Architecture',
+        description: 'Connecting external systems, ERPs, CRMs, and payment gateways with secure cloud infrastructure on AWS and GCP.',
+        badge: 'Cloud & DevOps',
+        deliverables: ['RESTful & GraphQL API integration', 'Docker containerization & CI/CD pipeline', 'SSL & cloud security hardening']
+      },
+      {
+        id: 'ws-6',
+        title: 'Website Maintenance & Speed Optimization',
+        description: 'Continuous monitoring, routine security audits, performance profiling, and proactive technical support with 99.9% uptime SLAs.',
+        badge: '24/7 SLA Support',
+        deliverables: ['Weekly security & dependency updates', 'Real-time uptime monitoring (99.9%)', 'Monthly performance & traffic audits']
+      }
+    ],
+    outcomes: [
+      'Sub-second page load speeds adhering to Google Core Web Vitals guidelines',
+      'Scalable, modular codebases designed to seamlessly handle high traffic spikes',
+      'Proactive SLA-backed maintenance and round-the-clock vulnerability monitoring',
+      'Flawless responsive behavior across desktop, tablet, and mobile browsers'
+    ],
+    processSteps: [
+      { step: 1, title: 'Requirement Discovery & Tech Blueprint', description: 'Analyze business objectives, define user stories, and select the optimal modern technology stack.' },
+      { step: 2, title: 'UI/UX Prototyping & System Architecture', description: 'Design interactive high-fidelity wireframes and establish secure database and API schemas.' },
+      { step: 3, title: 'Agile Full-Stack Engineering & QA', description: 'Develop in bi-weekly milestones with continuous integration, cross-device testing, and client review.' },
+      { step: 4, title: 'Production Launch & 24/7 Maintenance', description: 'Deploy to high-speed cloud infrastructure, conduct SEO indexing, and activate round-the-clock maintenance monitoring.' }
+    ],
+    faq: [
+      {
+        question: 'What modern technologies and frameworks do your engineers utilize?',
+        answer: 'We specialize in React, Next.js, TypeScript, Tailwind CSS, Node.js, Express, Python, PostgreSQL, MongoDB, GraphQL, and modern headless CMS platforms like Sanity and Strapi.'
+      },
+      {
+        question: 'Do you provide web hosting and ongoing maintenance after launch?',
+        answer: 'Yes! We configure production cloud deployments on Vercel, AWS, or Google Cloud, along with dedicated ongoing maintenance, security updates, and performance optimization packages.'
       }
     ]
   }
