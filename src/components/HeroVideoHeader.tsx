@@ -1,5 +1,5 @@
-import React, { useRef, useEffect } from 'react';
-import { ArrowRight } from 'lucide-react';
+import React, { useRef, useEffect, useState } from 'react';
+import { ArrowRight, Volume2, VolumeX } from 'lucide-react';
 
 interface HeroVideoHeaderProps {
   onOpenConsultation: () => void;
@@ -11,6 +11,18 @@ export const HeroVideoHeader: React.FC<HeroVideoHeaderProps> = ({
   onExploreServices
 }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [isMuted, setIsMuted] = useState(true);
+
+  const toggleMute = () => {
+    if (videoRef.current) {
+      const nextMuted = !videoRef.current.muted;
+      videoRef.current.muted = nextMuted;
+      setIsMuted(nextMuted);
+      if (!nextMuted) {
+        videoRef.current.play().catch(() => {});
+      }
+    }
+  };
 
   useEffect(() => {
     const video = videoRef.current;
@@ -24,7 +36,6 @@ export const HeroVideoHeader: React.FC<HeroVideoHeaderProps> = ({
 
     const startPlayback = () => {
       if (!video) return;
-      video.muted = true;
       const promise = video.play();
       if (promise !== undefined) {
         promise.catch(() => {
@@ -108,46 +119,69 @@ export const HeroVideoHeader: React.FC<HeroVideoHeaderProps> = ({
   };
 
   return (
-    <section className="relative min-h-[640px] sm:min-h-[700px] lg:min-h-[760px] flex flex-col justify-between pt-28 sm:pt-36 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 text-center overflow-hidden bg-[#0A0A0A] border-b border-[#1F1F1F]">
+    <section className="relative min-h-[580px] sm:min-h-[660px] lg:min-h-[740px] flex flex-col justify-end pb-12 sm:pb-16 lg:pb-20 px-4 sm:px-6 lg:px-8 text-center overflow-hidden bg-[#0A0A0A] border-b border-[#1F1F1F]">
       {/* ─────────────────────────────────────────────────────────────
-          1. CONTINUOUS 3D BRAND BACKGROUND VIDEO (PREVIOUS 3D LOGO REVEAL, ZERO STOP)
+          1. CONTINUOUS CAMPUS CINEMATIC BACKGROUND VIDEO
           ───────────────────────────────────────────────────────────── */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <video
           ref={videoRef}
-          src="/videos/ascend-3d-wall-reveal.mp4"
-          poster="/videos/ascend-3d-wall-poster.jpg"
+          src="/videos/ascend-campus-hero.mp4"
+          poster="/videos/ascend-campus-hero-poster.jpg"
           autoPlay
           loop
           muted
           playsInline
           preload="auto"
-          className="w-full h-full object-cover opacity-95 sm:opacity-100 scale-100 transition-opacity duration-500"
-          style={{ objectPosition: 'center 45%' }}
+          className="w-full h-full object-cover scale-100 transition-opacity duration-700"
+          style={{ objectPosition: 'center 40%' }}
         >
+          <source src="/videos/ascend-campus-hero.mp4" type="video/mp4" />
           <source src="/videos/ascend-3d-wall-reveal.mp4" type="video/mp4" />
-          <source src="/videos/ascend-compass-hero.mp4" type="video/mp4" />
         </video>
 
-        {/* Minimal atmospheric gradient at top & bottom so 3D video remains crisp and fully visible */}
-        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#0D0D0D]/60 via-[#0D0D0D]/20 to-transparent pointer-events-none" />
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#0D0D0D] via-[#0D0D0D]/40 to-transparent pointer-events-none" />
+        {/* Cinematic contrast scrims to guarantee complete legibility without obscuring the footage */}
+        <div className="absolute inset-0 bg-[#0D0D0D]/30 pointer-events-none" />
+        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#0D0D0D]/80 via-[#0D0D0D]/40 to-transparent pointer-events-none" />
+        <div className="absolute inset-x-0 bottom-0 h-72 bg-gradient-to-t from-[#0D0D0D] via-[#0D0D0D]/80 to-transparent pointer-events-none" />
+      </div>
+
+      {/* Audio Mute/Unmute Toggle Button */}
+      <div className="absolute top-24 sm:top-28 right-4 sm:right-8 z-20 pointer-events-auto">
+        <button
+          onClick={toggleMute}
+          id="hero-sound-toggle-btn"
+          aria-label={isMuted ? "Unmute hero soundtrack" : "Mute hero soundtrack"}
+          className="flex items-center gap-2 px-3 py-2 rounded-full bg-[#0D0D0D]/80 hover:bg-[#0D0D0D] backdrop-blur-md border border-white/20 hover:border-[#E5FE40]/60 text-white/90 text-xs font-mono transition-all cursor-pointer shadow-[0_4px_16px_rgba(0,0,0,0.6)]"
+        >
+          {isMuted ? (
+            <>
+              <VolumeX className="w-4 h-4 text-white/70" />
+              <span className="hidden sm:inline text-[11px] text-white/70">Sound Off</span>
+            </>
+          ) : (
+            <>
+              <Volume2 className="w-4 h-4 text-[#E5FE40] animate-pulse" />
+              <span className="hidden sm:inline text-[11px] text-[#E5FE40] font-bold">Sound On</span>
+            </>
+          )}
+        </button>
       </div>
 
       {/* ─────────────────────────────────────────────────────────────
           2. CINEMATIC HERO STATEMENT (ELEGANT LOWER FRAMING)
           ───────────────────────────────────────────────────────────── */}
-      <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center mt-auto pt-24 sm:pt-36">
+      <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center">
         {/* High-contrast headline with crisp drop shadow */}
-        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black text-white tracking-tight leading-[1.08] max-w-3xl drop-shadow-[0_4px_24px_rgba(0,0,0,0.85)]">
+        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black text-white tracking-tight leading-[1.08] max-w-3xl drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)]">
           Your next chapter <br />
-          <span className="font-editorial italic font-normal text-white/95 drop-shadow-[0_4px_16px_rgba(0,0,0,0.8)]">
+          <span className="font-editorial italic font-normal text-white/95 drop-shadow-[0_4px_16px_rgba(0,0,0,0.95)]">
             starts here.
           </span>
         </h1>
 
         {/* Five pillars sub-headline */}
-        <p className="mt-4 sm:mt-5 text-xs sm:text-sm md:text-base font-mono font-bold tracking-[0.3em] uppercase text-[#E5FE40] max-w-2xl mx-auto drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
+        <p className="mt-4 sm:mt-5 text-xs sm:text-sm md:text-base font-mono font-bold tracking-[0.3em] uppercase text-[#E5FE40] max-w-2xl mx-auto drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]">
           GUIDE • TRAIN • PLACE • GROW • GO GLOBAL
         </p>
 
@@ -156,7 +190,7 @@ export const HeroVideoHeader: React.FC<HeroVideoHeaderProps> = ({
           <button
             onClick={scrollToExhibition}
             id="hero-start-journey-btn"
-            className="px-8 py-4 bg-[#E5FE40] text-[#0D0D0D] font-bold text-xs tracking-wider uppercase cred-btn-tactile cred-box-white flex items-center justify-center gap-2.5 cursor-pointer hover:bg-[#d8f235] shadow-[0_12px_32px_rgba(229,254,64,0.25)]"
+            className="px-8 py-4 bg-[#E5FE40] text-[#0D0D0D] font-bold text-xs tracking-wider uppercase cred-btn-tactile cred-box-white flex items-center justify-center gap-2.5 cursor-pointer hover:bg-[#d8f235] shadow-[0_12px_32px_rgba(229,254,64,0.3)]"
           >
             <span>Start Your Journey</span>
             <ArrowRight className="w-4 h-4" />
@@ -164,7 +198,7 @@ export const HeroVideoHeader: React.FC<HeroVideoHeaderProps> = ({
 
           <button
             onClick={onOpenConsultation}
-            className="px-7 py-4 bg-[#0D0D0D]/85 backdrop-blur-md text-white font-mono text-xs uppercase tracking-wider border border-white/25 hover:border-white/50 transition-colors cred-btn-tactile cred-box-dark cursor-pointer shadow-[0_12px_32px_rgba(0,0,0,0.6)]"
+            className="px-7 py-4 bg-[#0D0D0D]/90 backdrop-blur-md text-white font-mono text-xs uppercase tracking-wider border border-white/30 hover:border-white/60 transition-colors cred-btn-tactile cred-box-dark cursor-pointer shadow-[0_12px_32px_rgba(0,0,0,0.7)]"
           >
             Claim Consultation
           </button>

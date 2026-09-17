@@ -385,7 +385,15 @@ export const Ascend3DWallDisplay: React.FC<{
           </div>
 
           {/* 4. BASELINE DIVIDER ACCENT */}
-          <div className="w-4/5 mx-auto h-[2px] mt-4 sm:mt-5 bg-gradient-to-r from-transparent via-[#00828A]/70 to-transparent" />
+          <div className="w-4/5 mx-auto h-[2.5px] mt-4 sm:mt-5 bg-[#0F223D]/80 rounded-full" />
+        </div>
+
+        {/* Ambient Diamond Sparkle Glint (Bottom-Right from uploaded photo) */}
+        <div className="absolute bottom-10 right-8 sm:right-12 pointer-events-none opacity-80 z-20">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 0L14 9L23 12L14 15L12 24L10 15L1 12L10 9L12 0Z" fill="#ffffff" fillOpacity="0.85" />
+            <circle cx="12" cy="12" r="8" fill="#cffafe" fillOpacity="0.3" filter="blur(4px)" />
+          </svg>
         </div>
 
         {/* Bottom Tagline */}

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { ArrowRight, ArrowUpRight, Sparkles, MapPin, Users, CheckCircle2 } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
+import { ArrowRight, ArrowUpRight, Sparkles, MapPin, Users, CheckCircle2, Volume2, VolumeX } from 'lucide-react';
 import { ServiceVertical } from '../types';
 import { AscendLogoMark } from './AscendLogo';
 
@@ -103,6 +103,53 @@ export const TheJourneyShowcase: React.FC<TheJourneyShowcaseProps> = ({
   onOpenConsultation
 }) => {
   const [selectedScene, setSelectedScene] = useState<JourneyScene>(JOURNEY_SCENES[0]);
+  const [isMuted, setIsMuted] = useState(true);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    video.muted = isMuted;
+    const playVideo = async () => {
+      try {
+        await video.play();
+      } catch (err) {
+        console.warn('The Journey background video autoplay caught:', err);
+      }
+    };
+    playVideo();
+
+    const handleVisibility = () => {
+      if (document.visibilityState === 'visible' && video.paused) {
+        video.play().catch(() => {});
+      }
+    };
+
+    const interval = setInterval(() => {
+      if (video && video.paused) {
+        video.play().catch(() => {});
+      }
+    }, 2500);
+
+    document.addEventListener('visibilitychange', handleVisibility);
+    return () => {
+      clearInterval(interval);
+      document.removeEventListener('visibilitychange', handleVisibility);
+    };
+  }, [isMuted]);
+
+  const toggleMute = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const video = videoRef.current;
+    if (!video) return;
+    const nextMuted = !isMuted;
+    video.muted = nextMuted;
+    setIsMuted(nextMuted);
+    if (video.paused) {
+      video.play().catch(() => {});
+    }
+  };
 
   const handleOpenService = (serviceId: string) => {
     const matched = services.find((s) => s.id === serviceId) || services[0];
@@ -111,9 +158,52 @@ export const TheJourneyShowcase: React.FC<TheJourneyShowcaseProps> = ({
 
   return (
     <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-[#0D0D0D] border-b border-[#1F1F1F] relative overflow-hidden" id="the-journey">
-      {/* Subtle Ambient Background */}
-      <div className="absolute inset-0 pointer-events-none opacity-20">
-        <div className="absolute top-0 right-1/4 w-[600px] h-[400px] bg-[radial-gradient(circle_at_50%_50%,rgba(0,130,138,0.15),transparent_70%)] blur-3xl" />
+      {/* ─────────────────────────────────────────────────────────────
+          CONTINUOUS CONSULTATION CINEMATIC BACKGROUND VIDEO
+          ───────────────────────────────────────────────────────────── */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <video
+          ref={videoRef}
+          src="/videos/ascend-consultation-journey.mp4"
+          poster="/videos/ascend-consultation-journey-poster.jpg"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          className="w-full h-full object-cover scale-105 transition-opacity duration-700"
+          style={{ objectPosition: 'center 45%' }}
+        >
+          <source src="/videos/ascend-consultation-journey.mp4" type="video/mp4" />
+          <source src="/videos/ascend-mentor-session.mp4" type="video/mp4" />
+        </video>
+
+        {/* Cinematic dark scrims to ensure high contrast & legibility for the cards and text */}
+        <div className="absolute inset-0 bg-[#0D0D0D]/75 backdrop-blur-[1px] pointer-events-none" />
+        <div className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-[#0D0D0D] via-[#0D0D0D]/80 to-transparent pointer-events-none" />
+        <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-[#0D0D0D] via-[#0D0D0D]/80 to-transparent pointer-events-none" />
+      </div>
+
+      {/* Audio Mute/Unmute Toggle Button */}
+      <div className="absolute top-6 sm:top-8 right-4 sm:right-8 z-20 pointer-events-auto">
+        <button
+          onClick={toggleMute}
+          id="journey-sound-toggle-btn"
+          aria-label={isMuted ? "Unmute consultation audio" : "Mute consultation audio"}
+          className="flex items-center gap-2 px-3 py-2 rounded-full bg-[#0D0D0D]/85 hover:bg-[#0D0D0D] backdrop-blur-md border border-white/20 hover:border-[#E5FE40]/60 text-white/90 text-xs font-mono transition-all cursor-pointer shadow-[0_4px_16px_rgba(0,0,0,0.6)]"
+        >
+          {isMuted ? (
+            <>
+              <VolumeX className="w-4 h-4 text-white/70" />
+              <span className="hidden sm:inline text-[11px] text-white/70">Sound Off</span>
+            </>
+          ) : (
+            <>
+              <Volume2 className="w-4 h-4 text-[#E5FE40] animate-pulse" />
+              <span className="hidden sm:inline text-[11px] text-[#E5FE40] font-bold">Sound On</span>
+            </>
+          )}
+        </button>
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
@@ -137,7 +227,7 @@ export const TheJourneyShowcase: React.FC<TheJourneyShowcaseProps> = ({
             <div
               key={scene.id}
               onClick={() => handleOpenService(scene.serviceId)}
-              className="group bg-[#161616] border-2 border-[#262626] hover:border-[#444444] transition-all duration-300 cred-box-dark flex flex-col justify-between cursor-pointer overflow-hidden"
+              className="group bg-[#161616]/90 backdrop-blur-md border-2 border-[#262626] hover:border-[#444444] transition-all duration-300 cred-box-dark flex flex-col justify-between cursor-pointer overflow-hidden shadow-[0_12px_32px_rgba(0,0,0,0.6)]"
               style={{
                 boxShadow: '10px 10px 0px #000000'
               }}
@@ -163,7 +253,7 @@ export const TheJourneyShowcase: React.FC<TheJourneyShowcaseProps> = ({
               </div>
 
               {/* BOTTOM PART: Identity & Minimalist Copy */}
-              <div className="p-5 sm:p-6 flex flex-col justify-between flex-1 bg-[#161616]">
+              <div className="p-5 sm:p-6 flex flex-col justify-between flex-1 bg-[#161616]/95">
                 <div>
                   <div className="flex items-center justify-between mb-1.5">
                     <span
