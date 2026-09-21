@@ -140,10 +140,10 @@ export const HeroVideoHeader: React.FC<HeroVideoHeaderProps> = ({
           <source src="/videos/ascend-3d-wall-reveal.mp4" type="video/mp4" />
         </video>
 
-        {/* Cinematic contrast scrims to guarantee complete legibility without obscuring the footage */}
-        <div className="absolute inset-0 bg-[#0D0D0D]/30 pointer-events-none" />
-        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#0D0D0D]/80 via-[#0D0D0D]/40 to-transparent pointer-events-none" />
-        <div className="absolute inset-x-0 bottom-0 h-72 bg-gradient-to-t from-[#0D0D0D] via-[#0D0D0D]/80 to-transparent pointer-events-none" />
+        {/* Subtle contrast scrims so the exact video and on-screen typography are vividly visible */}
+        <div className="absolute inset-0 bg-[#0D0D0D]/15 pointer-events-none" />
+        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#0D0D0D]/70 via-[#0D0D0D]/25 to-transparent pointer-events-none" />
+        <div className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-[#0D0D0D] via-[#0D0D0D]/60 to-transparent pointer-events-none" />
       </div>
 
       {/* Audio Mute/Unmute Toggle Button */}

@@ -5,6 +5,7 @@ interface AscendLogoProps {
   size?: number | string;
   showGlow?: boolean;
   variant?: 'metallic-3d' | 'flat' | 'neon';
+  useImage?: boolean;
 }
 
 /**
@@ -19,166 +20,39 @@ interface AscendLogoProps {
  */
 export const AscendLogoMark: React.FC<AscendLogoProps> = ({
   className = 'w-10 h-10',
-  showGlow = true
+  showGlow = true,
+  useImage = false
 }) => {
+  if (useImage) {
+    return (
+      <div className={`relative inline-flex items-center justify-center shrink-0 ${className}`}>
+        {showGlow && (
+          <div className="absolute inset-0 rounded-full bg-[#00828A]/25 blur-lg -z-10 scale-125 pointer-events-none" />
+        )}
+        <img
+          src="/images/logo1.png"
+          alt="Ascend Career 3D Emblem"
+          className="w-full h-full object-contain drop-shadow-[0_8px_16px_rgba(0,18,24,0.55)]"
+          loading="eager"
+        />
+      </div>
+    );
+  }
+
   return (
     <div className={`relative inline-flex items-center justify-center shrink-0 ${className}`}>
       {showGlow && (
         <div className="absolute inset-0 rounded-full bg-[#00828A]/20 blur-lg -z-10 scale-125 pointer-events-none" />
       )}
-      <svg
-        viewBox="0 0 260 250"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        className="w-full h-full drop-shadow-[0_8px_16px_rgba(0,18,24,0.55)]"
-      >
-        <defs>
-          {/* Front Face: Signature Polished Teal Gradient */}
-          <linearGradient id="ascend-front-teal" x1="40" y1="210" x2="220" y2="30" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor="#006670" />
-            <stop offset="30%" stopColor="#00828A" />
-            <stop offset="70%" stopColor="#0d9488" />
-            <stop offset="100%" stopColor="#14b8a6" />
-          </linearGradient>
-
-          {/* Top Specular Edge Highlight Gradient */}
-          <linearGradient id="ascend-specular-edge" x1="60" y1="30" x2="200" y2="180" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor="#cffafe" stopOpacity="0.9" />
-            <stop offset="40%" stopColor="#5eead4" stopOpacity="0.7" />
-            <stop offset="80%" stopColor="#14b8a6" stopOpacity="0.3" />
-            <stop offset="100%" stopColor="#00828A" stopOpacity="0.1" />
-          </linearGradient>
-
-          {/* 3D Extrusion Side Wall Gradient (Shadowed Depth) */}
-          <linearGradient id="ascend-extrusion-depth" x1="100" y1="30" x2="240" y2="240" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor="#004d53" />
-            <stop offset="50%" stopColor="#002f33" />
-            <stop offset="100%" stopColor="#001a1c" />
-          </linearGradient>
-
-          {/* Diagonal Glass/Lacquer Sheen */}
-          <linearGradient id="ascend-gloss-sheen" x1="60" y1="20" x2="180" y2="200" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor="#ffffff" stopOpacity="0.45" />
-            <stop offset="35%" stopColor="#ffffff" stopOpacity="0.1" />
-            <stop offset="60%" stopColor="#ffffff" stopOpacity="0" />
-          </linearGradient>
-
-          {/* Filter for realistic ambient wall drop shadow */}
-          <filter id="ascend-wall-shadow" x="-20%" y="-20%" width="150%" height="150%">
-            <feDropShadow dx="8" dy="14" stdDeviation="10" floodColor="#001217" floodOpacity="0.5" />
-            <feDropShadow dx="2" dy="4" stdDeviation="4" floodColor="#002126" floodOpacity="0.4" />
-          </filter>
-        </defs>
-
-        {/* ─────────────────────────────────────────────────────────────
-            LAYER 1: 3D EXTRUSION SIDES & SHADOWS (Down & Right offset)
-            Provides true physical thickness matching the wall photo
-            ───────────────────────────────────────────────────────────── */}
-        <g transform="translate(6, 9)" fill="url(#ascend-extrusion-depth)" filter="url(#ascend-wall-shadow)">
-          {/* Outer Ascending Blade & Wing */}
-          <path d="M 132 12 L 158 12 L 230 160 L 204 212 L 184 180 L 208 144 Z" />
-          {/* Main Left Leg */}
-          <path d="M 114 42 L 138 42 L 56 178 L 32 178 Z" />
-          {/* Inner Stripe */}
-          <path d="M 138 42 L 158 42 L 78 178 L 56 178 Z" />
-          {/* Center Cross Connector */}
-          <path d="M 114 42 L 138 42 L 186 162 L 162 162 Z" />
-          {/* Triangle Base Bar */}
-          <path d="M 50 160 L 188 160 L 198 178 L 40 178 Z" />
-          {/* Lower Foundation Bar */}
-          <path d="M 32 204 L 176 204 L 196 234 L 172 234 L 160 218 L 32 218 Z" />
-          {/* Bottom Chevron Foot */}
-          <path d="M 204 212 L 192 232 L 172 202 L 184 180 Z" />
-        </g>
-
-        {/* Intermediate depth bevel layer (translate 3, 4.5) */}
-        <g transform="translate(3, 4.5)" fill="#003d42" opacity="0.85">
-          <path d="M 132 12 L 158 12 L 230 160 L 204 212 L 184 180 L 208 144 Z" />
-          <path d="M 114 42 L 138 42 L 56 178 L 32 178 Z" />
-          <path d="M 138 42 L 158 42 L 78 178 L 56 178 Z" />
-          <path d="M 114 42 L 138 42 L 186 162 L 162 162 Z" />
-          <path d="M 50 160 L 188 160 L 198 178 L 40 178 Z" />
-          <path d="M 32 204 L 176 204 L 196 234 L 172 234 L 160 218 L 32 218 Z" />
-          <path d="M 204 212 L 192 232 L 172 202 L 184 180 Z" />
-        </g>
-
-        {/* ─────────────────────────────────────────────────────────────
-            LAYER 2: FRONT METALLIC TEAL FACES (Zero Offset)
-            ───────────────────────────────────────────────────────────── */}
-        <g strokeLinejoin="miter" strokeMiterlimit="6">
-          {/* Outer Ascending Blade & Wing */}
-          <path
-            d="M 132 12 L 158 12 L 230 160 L 204 212 L 184 180 L 208 144 Z"
-            fill="url(#ascend-front-teal)"
-            stroke="url(#ascend-specular-edge)"
-            strokeWidth="1.2"
-          />
-
-          {/* Main Left Leg */}
-          <path
-            d="M 114 42 L 138 42 L 56 178 L 32 178 Z"
-            fill="url(#ascend-front-teal)"
-            stroke="url(#ascend-specular-edge)"
-            strokeWidth="1.2"
-          />
-
-          {/* Inner Stripe */}
-          <path
-            d="M 138 42 L 158 42 L 78 178 L 56 178 Z"
-            fill="url(#ascend-front-teal)"
-            stroke="url(#ascend-specular-edge)"
-            strokeWidth="1.2"
-          />
-
-          {/* Center Cross Connector */}
-          <path
-            d="M 114 42 L 138 42 L 186 162 L 162 162 Z"
-            fill="url(#ascend-front-teal)"
-            stroke="url(#ascend-specular-edge)"
-            strokeWidth="1.2"
-          />
-
-          {/* Triangle Base Bar */}
-          <path
-            d="M 50 160 L 188 160 L 198 178 L 40 178 Z"
-            fill="url(#ascend-front-teal)"
-            stroke="url(#ascend-specular-edge)"
-            strokeWidth="1.2"
-          />
-
-          {/* Bottom Horizontal Foundation Bar */}
-          <path
-            d="M 32 204 L 176 204 L 196 234 L 172 234 L 160 218 L 32 218 Z"
-            fill="url(#ascend-front-teal)"
-            stroke="url(#ascend-specular-edge)"
-            strokeWidth="1.2"
-          />
-
-          {/* Bottom Right Chevron Foot */}
-          <path
-            d="M 204 212 L 192 232 L 172 202 L 184 180 Z"
-            fill="url(#ascend-front-teal)"
-            stroke="url(#ascend-specular-edge)"
-            strokeWidth="1.2"
-          />
-        </g>
-
-        {/* ─────────────────────────────────────────────────────────────
-            LAYER 3: HIGH-GLOSS LACQUER REFLECTION OVERLAY
-            Creates the realistic studio glass / polished surface shine
-            ───────────────────────────────────────────────────────────── */}
-        <g opacity="0.65" pointerEvents="none">
-          {/* Diagonal sheen passing through the upper segments */}
-          <path
-            d="M 114 42 L 158 12 L 200 90 L 90 140 Z"
-            fill="url(#ascend-gloss-sheen)"
-            style={{ mixBlendMode: 'screen' }}
-          />
-          {/* Subtle apex point glint */}
-          <circle cx="145" cy="12" r="2.5" fill="#ffffff" opacity="0.9" />
-          <circle cx="204" cy="180" r="2" fill="#ffffff" opacity="0.8" />
-        </g>
-      </svg>
+      <img
+        src="/images/ascend-logo.svg"
+        alt="Ascend Career Logo"
+        className="w-full h-full object-contain drop-shadow-[0_8px_16px_rgba(0,18,24,0.55)]"
+        onError={(e) => {
+          // Fallback if SVG fails for any reason
+          e.currentTarget.src = '/images/logo1.png';
+        }}
+      />
     </div>
   );
 };
